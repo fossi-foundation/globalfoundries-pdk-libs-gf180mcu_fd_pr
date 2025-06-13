@@ -34,6 +34,7 @@ def _patch_class_attr(cls, name, attr, force=False):
 
 def patch_legacy_classes():
     import gdsfactory as gf
+    from importlib.util import find_spec
     from typing import Optional
 
     #
@@ -70,4 +71,11 @@ def patch_legacy_classes():
     _patch_class_attr(gf.Component, 'add_array', __gf__Component__add_array)
     _patch_class_attr(gf.Component, 'size', property(__gf__component_layout___GeometryHelper__size))
     _patch_class_attr(gf.ComponentReference, 'size', property(__gf__component_layout___GeometryHelper__size))
-
+    
+    # class gdsfactory.geometry.boolean (v7) now resides under gdsfactory.boolean (v9)
+    if find_spec('gdsfactory.geometry') is None:
+        class DummyNamespace:
+            pass
+        gf__geometry = DummyNamespace()
+        gf__geometry.boolean = gf.boolean
+        gf.geometry = gf__geometry
