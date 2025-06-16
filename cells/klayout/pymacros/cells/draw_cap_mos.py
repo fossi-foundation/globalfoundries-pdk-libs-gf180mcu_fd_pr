@@ -395,7 +395,7 @@ def draw_cap_mos(
         )
         rect_pcmpgr_out.dmove((rect_pcmpgr_in.dxmin - grw, rect_pcmpgr_in.dymin - grw))
         c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=rect_pcmpgr_out,
                 B=rect_pcmpgr_in,
                 operation="A-B",
@@ -428,7 +428,7 @@ def draw_cap_mos(
             (rect_pcmpgr_out.dxmin - comp_pp_enc, rect_pcmpgr_out.dymin - comp_pp_enc,)
         )
         c.add_ref(
-            gf.geometry.boolean(A=psdm_out, B=psdm_in, operation="A-B", layer=gr_imp)
+            gf.boolean(A=psdm_out, B=psdm_in, operation="A-B", layer=gr_imp)
         )  # psdm
 
         # generating contacts
@@ -513,7 +513,7 @@ def draw_cap_mos(
         )
         comp_m1_out.dmove((rect_pcmpgr_in.dxmin - grw, rect_pcmpgr_in.dymin - grw))
         c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=rect_pcmpgr_out,
                 B=rect_pcmpgr_in,
                 operation="A-B",

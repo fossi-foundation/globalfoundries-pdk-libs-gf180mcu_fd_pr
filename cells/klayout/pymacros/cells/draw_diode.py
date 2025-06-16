@@ -209,7 +209,7 @@ def draw_diode_nd2ps(
                 (rect_pcmpgr_in.dxmin - pcmp_gr_wid, rect_pcmpgr_in.dymin - pcmp_gr_wid)
             )
             c.add_ref(
-                gf.geometry.boolean(
+                gf.boolean(
                     A=rect_pcmpgr_out,
                     B=rect_pcmpgr_in,
                     operation="A-B",
@@ -245,7 +245,7 @@ def draw_diode_nd2ps(
                 )
             )
             c.add_ref(
-                gf.geometry.boolean(
+                gf.boolean(
                     A=psdm_out, B=psdm_in, operation="A-B", layer=layer["pplus"]
                 )
             )  # psdm draw
@@ -328,7 +328,7 @@ def draw_diode_nd2ps(
                 (rect_pcmpgr_in.dxmin - pcmp_gr_wid, rect_pcmpgr_in.dymin - pcmp_gr_wid)
             )
             c.add_ref(
-                gf.geometry.boolean(
+                gf.boolean(
                     A=rect_pcmpgr_out,
                     B=rect_pcmpgr_in,
                     operation="A-B",
@@ -550,7 +550,7 @@ def draw_diode_pd2nw(
                 (rect_pcmpgr_in.dxmin - pcmp_gr_wid, rect_pcmpgr_in.dymin - pcmp_gr_wid)
             )
             c.add_ref(
-                gf.geometry.boolean(
+                gf.boolean(
                     A=rect_pcmpgr_out,
                     B=rect_pcmpgr_in,
                     operation="A-B",
@@ -586,7 +586,7 @@ def draw_diode_pd2nw(
                 )
             )
             c.add_ref(
-                gf.geometry.boolean(
+                gf.boolean(
                     A=psdm_out, B=psdm_in, operation="A-B", layer=layer["pplus"]
                 )
             )  # psdm guardring
@@ -669,7 +669,7 @@ def draw_diode_pd2nw(
                 (rect_pcmpgr_in.dxmin - pcmp_gr_wid, rect_pcmpgr_in.dymin - pcmp_gr_wid)
             )
             c.add_ref(
-                gf.geometry.boolean(
+                gf.boolean(
                     A=rect_pcmpgr_out,
                     B=rect_pcmpgr_in,
                     operation="A-B",
@@ -957,7 +957,7 @@ def draw_diode_pw2dw(
         )
         pcmp_out.dmove((pcmp_in.dxmin - grw, pcmp_in.dymin - grw))
         pcmp = c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=pcmp_out, B=pcmp_in, operation="A-B", layer=layer["comp"],
             )
         )
@@ -983,7 +983,7 @@ def draw_diode_pw2dw(
         )
         pplus_out.dmove((pcmp_out.dxmin - pp_enc_comp, pcmp_out.dymin - pp_enc_comp,))
         pplus = c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=pplus_out, B=pplus_in, operation="A-B", layer=layer["pplus"]
             )
         )  # pplus
@@ -1035,7 +1035,7 @@ def draw_diode_pw2dw(
         )  # right contact
 
         c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=pcmp_out, B=pcmp_in, operation="A-B", layer=layer["metal1"],
             )
         )  # guardring metal1
@@ -1131,7 +1131,7 @@ def draw_diode_pw2dw(
             (rect_pcmpgr_in.dxmin - pcmp_gr_wid, rect_pcmpgr_in.dymin - pcmp_gr_wid)
         )
         c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=rect_pcmpgr_out,
                 B=rect_pcmpgr_in,
                 operation="A-B",
@@ -1164,7 +1164,7 @@ def draw_diode_pw2dw(
             (rect_pcmpgr_out.dxmin - pp_enc_comp, rect_pcmpgr_out.dymin - pp_enc_comp,)
         )
         c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=psdm_out, B=psdm_in, operation="A-B", layer=layer["pplus"]
             )
         )  # guardring psdm
@@ -1247,7 +1247,7 @@ def draw_diode_pw2dw(
             (rect_pcmpgr_in.dxmin - pcmp_gr_wid, rect_pcmpgr_in.dymin - pcmp_gr_wid)
         )
         c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=rect_pcmpgr_out,
                 B=rect_pcmpgr_in,
                 operation="A-B",
@@ -1378,7 +1378,7 @@ def draw_diode_dw2ps(
         )
         ncmp_out.dmove((ncmp_in.dxmin - cw, ncmp_in.dymin - cw))
         ncmp = c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=ncmp_out, B=ncmp_in, operation="A-B", layer=layer["comp"],
             )
         )
@@ -1404,7 +1404,7 @@ def draw_diode_dw2ps(
         )
         nplus_out.dmove((ncmp_out.dxmin - pp_enc_comp, ncmp_out.dymin - pp_enc_comp,))
         nplus = c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=nplus_out, B=nplus_in, operation="A-B", layer=layer["nplus"]
             )
         )  # nplus
@@ -1469,7 +1469,7 @@ def draw_diode_dw2ps(
         )
         comp_m1_out.dmove((ncmp_in.dxmin - cw, ncmp_in.dymin - cw))
         c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=ncmp_out, B=ncmp_in, operation="A-B", layer=layer["metal1"],
             )
         )  # guardring metal1
@@ -1517,7 +1517,7 @@ def draw_diode_dw2ps(
             (rect_pcmpgr_in.dxmin - pcmp_gr_wid, rect_pcmpgr_in.dymin - pcmp_gr_wid)
         )
         c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=rect_pcmpgr_out,
                 B=rect_pcmpgr_in,
                 operation="A-B",
@@ -1550,7 +1550,7 @@ def draw_diode_dw2ps(
             (rect_pcmpgr_out.dxmin - pp_enc_comp, rect_pcmpgr_out.dymin - pp_enc_comp,)
         )
         c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=psdm_out, B=psdm_in, operation="A-B", layer=layer["pplus"]
             )
         )  # psdm
@@ -1646,7 +1646,7 @@ def draw_diode_dw2ps(
             (rect_pcmpgr_in.dxmin - pcmp_gr_wid, rect_pcmpgr_in.dymin - pcmp_gr_wid)
         )
         c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=rect_pcmpgr_out,
                 B=rect_pcmpgr_in,
                 operation="A-B",
@@ -1940,7 +1940,7 @@ def draw_sc_diode(
             (rect_pcmpgr_in.dxmin - pcmp_gr_wid, rect_pcmpgr_in.dymin - pcmp_gr_wid)
         )
         c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=rect_pcmpgr_out,
                 B=rect_pcmpgr_in,
                 operation="A-B",
@@ -1973,7 +1973,7 @@ def draw_sc_diode(
             (rect_pcmpgr_out.dxmin - pp_enc_comp, rect_pcmpgr_out.dymin - pp_enc_comp,)
         )
         c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=psdm_out, B=psdm_in, operation="A-B", layer=layer["pplus"]
             )
         )  # psdm
@@ -2056,7 +2056,7 @@ def draw_sc_diode(
             (rect_pcmpgr_in.dxmin - pcmp_gr_wid, rect_pcmpgr_in.dymin - pcmp_gr_wid)
         )
         c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=rect_pcmpgr_out,
                 B=rect_pcmpgr_in,
                 operation="A-B",

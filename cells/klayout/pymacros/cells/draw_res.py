@@ -152,7 +152,7 @@ def pcmpgr_gen(dn_rect, grw: float = 0.36) -> gf.Component:
     )
     rect_pcmpgr_out.dmove((rect_pcmpgr_in.dxmin - grw, rect_pcmpgr_in.dymin - grw))
     c.add_ref(
-        gf.geometry.boolean(
+        gf.boolean(
             A=rect_pcmpgr_out, B=rect_pcmpgr_in, operation="A-B", layer=layer["comp"],
         )
     )  # guardring bulk
@@ -182,7 +182,7 @@ def pcmpgr_gen(dn_rect, grw: float = 0.36) -> gf.Component:
         (rect_pcmpgr_out.dxmin - comp_pp_enc, rect_pcmpgr_out.dymin - comp_pp_enc,)
     )
     c.add_ref(
-        gf.geometry.boolean(
+        gf.boolean(
             A=psdm_out, B=psdm_in, operation="A-B", layer=layer["pplus"]
         )
     )  # pplus_draw
@@ -248,7 +248,7 @@ def pcmpgr_gen(dn_rect, grw: float = 0.36) -> gf.Component:
     )
     comp_m1_out.dmove((rect_pcmpgr_in.dxmin - grw, rect_pcmpgr_in.dymin - grw))
     c.add_ref(
-        gf.geometry.boolean(
+        gf.boolean(
             A=rect_pcmpgr_out, B=rect_pcmpgr_in, operation="A-B", layer=layer["metal1"],
         )
     )  # metal1 guardring

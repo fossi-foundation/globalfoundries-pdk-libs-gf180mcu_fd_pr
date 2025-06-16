@@ -655,7 +655,7 @@ def bulk_gr_gen(
     )
     rect_bulk_out.dmove((rect_bulk_in.dxmin - grw, rect_bulk_in.dymin - grw))
     B = c.add_ref(
-        gf.geometry.boolean(
+        gf.boolean(
             A=rect_bulk_out, B=rect_bulk_in, operation="A-B", layer=layer["comp"],
         )
     )
@@ -681,7 +681,7 @@ def bulk_gr_gen(
     )
     psdm_out.dmove((rect_bulk_out.dxmin - comp_pp_enc, rect_bulk_out.dymin - comp_pp_enc,))
     c.add_ref(
-        gf.geometry.boolean(A=psdm_out, B=psdm_in, operation="A-B", layer=implant_layer)
+        gf.boolean(A=psdm_out, B=psdm_in, operation="A-B", layer=implant_layer)
     )  # implant_draw(pplus or nplus)
 
     # generating contacts
@@ -751,7 +751,7 @@ def bulk_gr_gen(
     )
     comp_m1_out.dmove((rect_bulk_in.dxmin - grw, rect_bulk_in.dymin - grw))
     c.add_ref(
-        gf.geometry.boolean(
+        gf.boolean(
             A=rect_bulk_out, B=rect_bulk_in, operation="A-B", layer=layer["metal1"],
         )
     )  # metal1_gaurdring
@@ -840,7 +840,7 @@ def pcmpgr_gen(dn_rect, grw: float = 0.36) -> gf.Component:
     )
     rect_pcmpgr_out.dmove((rect_pcmpgr_in.dxmin - grw, rect_pcmpgr_in.dymin - grw))
     c.add_ref(
-        gf.geometry.boolean(
+        gf.boolean(
             A=rect_pcmpgr_out, B=rect_pcmpgr_in, operation="A-B", layer=layer["comp"],
         )
     )  # guardring bulk
@@ -870,7 +870,7 @@ def pcmpgr_gen(dn_rect, grw: float = 0.36) -> gf.Component:
         (rect_pcmpgr_out.dxmin - comp_pp_enc, rect_pcmpgr_out.dymin - comp_pp_enc,)
     )
     c.add_ref(
-        gf.geometry.boolean(
+        gf.boolean(
             A=psdm_out, B=psdm_in, operation="A-B", layer=layer["pplus"]
         )
     )  # pplus_draw
@@ -936,7 +936,7 @@ def pcmpgr_gen(dn_rect, grw: float = 0.36) -> gf.Component:
     )
     comp_m1_out.dmove((rect_pcmpgr_in.dxmin - grw, rect_pcmpgr_in.dymin - grw))
     c.add_ref(
-        gf.geometry.boolean(
+        gf.boolean(
             A=rect_pcmpgr_out, B=rect_pcmpgr_in, operation="A-B", layer=layer["metal1"],
         )
     )  # metal1 guardring
@@ -2802,7 +2802,7 @@ def draw_nfet_06v0_nvt(
         )
         rect_bulk_out.dmove((rect_bulk_in.dxmin - grw, rect_bulk_in.dymin - grw))
         c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=rect_bulk_out, B=rect_bulk_in, operation="A-B", layer=layer["comp"],
             )
         )
@@ -2830,7 +2830,7 @@ def draw_nfet_06v0_nvt(
             (rect_bulk_out.dxmin - comp_pp_enc, rect_bulk_out.dymin - comp_pp_enc,)
         )
         psdm = c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=psdm_out, B=psdm_in, operation="A-B", layer=layer["pplus"]
             )
         )
@@ -2902,7 +2902,7 @@ def draw_nfet_06v0_nvt(
         )
         comp_m1_out.dmove((rect_bulk_in.dxmin - grw, rect_bulk_in.dymin - grw))
         b_gr = c.add_ref(
-            gf.geometry.boolean(
+            gf.boolean(
                 A=rect_bulk_out, B=rect_bulk_in, operation="A-B", layer=layer["metal1"],
             )
         )  # guardring metal1
