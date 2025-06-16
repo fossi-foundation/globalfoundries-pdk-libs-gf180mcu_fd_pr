@@ -79,3 +79,26 @@ def patch_legacy_classes():
         gf__geometry = DummyNamespace()
         gf__geometry.boolean = gf.boolean
         gf.geometry = gf__geometry
+
+
+    # gf.Component("nfet_dev") for example would yield the error below, e.g. when changing PCell parameters
+    #
+    #ERROR: ValueError: Cellname nfet_dev already exists. Please make sure the cellname is unique or pass `allow_duplicate` when creating the library in PCellDeclaration.produce
+    #  /usr/local/lib/python3.12/dist-packages/kfactory/layout.py:1209
+    #  /usr/local/lib/python3.12/dist-packages/kfactory/kcell.py:594
+    #  /usr/local/lib/python3.12/dist-packages/kfactory/kcell.py:2563
+
+    import klayout.db as kdb
+    import kfactory.layout
+    original_method = kfactory.layout.KCLayout.create_cell
+
+    # noinspection PyPep8Naming
+    def __kfactory__layout__KCLayout_create_cell(
+        self,
+        name: str,
+        *args: str,
+        allow_duplicate: bool = True,
+    ) -> kdb.Cell:
+        return original_method(self, name, *args, allow_duplicate=allow_duplicate)
+
+    kfactory.layout.KCLayout.create_cell = __kfactory__layout__KCLayout_create_cell
