@@ -82,24 +82,24 @@ def draw_metal_res(
     m_rect = c.add_ref(
         gf.components.rectangle(size=(l_res + (2 * m_ext), w_res), layer=m_layer)
     )
-    m_rect.xmin = res_mk.xmin - m_ext
-    m_rect.ymin = res_mk.ymin
+    m_rect.dxmin = res_mk.dxmin - m_ext
+    m_rect.dymin = res_mk.dymin
 
     # labels generation
     if lbl == 1:
         c.add_label(
             r0_lbl,
             position=(
-                res_mk.xmin + (res_mk.size[0] / 2),
-                res_mk.ymin + (res_mk.size[1] / 2),
+                res_mk.dxmin + (res_mk.size[0] / 2),
+                res_mk.dymin + (res_mk.size[1] / 2),
             ),
             layer=m_lbl_layer,
         )
         c.add_label(
             r1_lbl,
             position=(
-                m_rect.xmin + (res_mk.xmin - m_rect.xmin) / 2,
-                m_rect.ymin + (m_rect.size[1] / 2),
+                m_rect.dxmin + (res_mk.dxmin - m_rect.dxmin) / 2,
+                m_rect.dymin + (m_rect.size[1] / 2),
             ),
             layer=m_lbl_layer,
         )
@@ -134,23 +134,23 @@ def pcmpgr_gen(dn_rect, grw: float = 0.36) -> gf.Component:
     rect_pcmpgr_in = c_temp_gr.add_ref(
         gf.components.rectangle(
             size=(
-                (dn_rect.xmax - dn_rect.xmin) + 2 * pcmpgr_enc_dn,
-                (dn_rect.ymax - dn_rect.ymin) + 2 * pcmpgr_enc_dn,
+                (dn_rect.dxmax - dn_rect.dxmin) + 2 * pcmpgr_enc_dn,
+                (dn_rect.dymax - dn_rect.dymin) + 2 * pcmpgr_enc_dn,
             ),
             layer=layer["comp"],
         )
     )
-    rect_pcmpgr_in.move((dn_rect.xmin - pcmpgr_enc_dn, dn_rect.ymin - pcmpgr_enc_dn))
+    rect_pcmpgr_in.dmove((dn_rect.dxmin - pcmpgr_enc_dn, dn_rect.dymin - pcmpgr_enc_dn))
     rect_pcmpgr_out = c_temp_gr.add_ref(
         gf.components.rectangle(
             size=(
-                (rect_pcmpgr_in.xmax - rect_pcmpgr_in.xmin) + 2 * grw,
-                (rect_pcmpgr_in.ymax - rect_pcmpgr_in.ymin) + 2 * grw,
+                (rect_pcmpgr_in.dxmax - rect_pcmpgr_in.dxmin) + 2 * grw,
+                (rect_pcmpgr_in.dymax - rect_pcmpgr_in.dymin) + 2 * grw,
             ),
             layer=layer["comp"],
         )
     )
-    rect_pcmpgr_out.move((rect_pcmpgr_in.xmin - grw, rect_pcmpgr_in.ymin - grw))
+    rect_pcmpgr_out.dmove((rect_pcmpgr_in.dxmin - grw, rect_pcmpgr_in.dymin - grw))
     c.add_ref(
         gf.geometry.boolean(
             A=rect_pcmpgr_out, B=rect_pcmpgr_in, operation="A-B", layer=layer["comp"],
@@ -160,26 +160,26 @@ def pcmpgr_gen(dn_rect, grw: float = 0.36) -> gf.Component:
     psdm_in = c_temp_gr.add_ref(
         gf.components.rectangle(
             size=(
-                (rect_pcmpgr_in.xmax - rect_pcmpgr_in.xmin) - 2 * comp_pp_enc,
-                (rect_pcmpgr_in.ymax - rect_pcmpgr_in.ymin) - 2 * comp_pp_enc,
+                (rect_pcmpgr_in.dxmax - rect_pcmpgr_in.dxmin) - 2 * comp_pp_enc,
+                (rect_pcmpgr_in.dymax - rect_pcmpgr_in.dymin) - 2 * comp_pp_enc,
             ),
             layer=layer["pplus"],
         )
     )
-    psdm_in.move(
-        (rect_pcmpgr_in.xmin + comp_pp_enc, rect_pcmpgr_in.ymin + comp_pp_enc,)
+    psdm_in.dmove(
+        (rect_pcmpgr_in.dxmin + comp_pp_enc, rect_pcmpgr_in.dymin + comp_pp_enc,)
     )
     psdm_out = c_temp_gr.add_ref(
         gf.components.rectangle(
             size=(
-                (rect_pcmpgr_out.xmax - rect_pcmpgr_out.xmin) + 2 * comp_pp_enc,
-                (rect_pcmpgr_out.ymax - rect_pcmpgr_out.ymin) + 2 * comp_pp_enc,
+                (rect_pcmpgr_out.dxmax - rect_pcmpgr_out.dxmin) + 2 * comp_pp_enc,
+                (rect_pcmpgr_out.dymax - rect_pcmpgr_out.dymin) + 2 * comp_pp_enc,
             ),
             layer=layer["pplus"],
         )
     )
-    psdm_out.move(
-        (rect_pcmpgr_out.xmin - comp_pp_enc, rect_pcmpgr_out.ymin - comp_pp_enc,)
+    psdm_out.dmove(
+        (rect_pcmpgr_out.dxmin - comp_pp_enc, rect_pcmpgr_out.dymin - comp_pp_enc,)
     )
     c.add_ref(
         gf.geometry.boolean(
@@ -191,8 +191,8 @@ def pcmpgr_gen(dn_rect, grw: float = 0.36) -> gf.Component:
 
     c.add_ref(
         via_generator(
-            x_range=(rect_pcmpgr_in.xmin + con_size, rect_pcmpgr_in.xmax - con_size,),
-            y_range=(rect_pcmpgr_out.ymin, rect_pcmpgr_in.ymin),
+            x_range=(rect_pcmpgr_in.dxmin + con_size, rect_pcmpgr_in.dxmax - con_size,),
+            y_range=(rect_pcmpgr_out.dymin, rect_pcmpgr_in.dymin),
             via_enclosure=(con_comp_enc, con_comp_enc),
             via_layer=layer["contact"],
             via_size=(con_size, con_size),
@@ -202,8 +202,8 @@ def pcmpgr_gen(dn_rect, grw: float = 0.36) -> gf.Component:
 
     c.add_ref(
         via_generator(
-            x_range=(rect_pcmpgr_in.xmin + con_size, rect_pcmpgr_in.xmax - con_size,),
-            y_range=(rect_pcmpgr_in.ymax, rect_pcmpgr_out.ymax),
+            x_range=(rect_pcmpgr_in.dxmin + con_size, rect_pcmpgr_in.dxmax - con_size,),
+            y_range=(rect_pcmpgr_in.dymax, rect_pcmpgr_out.dymax),
             via_enclosure=(con_comp_enc, con_comp_enc),
             via_layer=layer["contact"],
             via_size=(con_size, con_size),
@@ -213,8 +213,8 @@ def pcmpgr_gen(dn_rect, grw: float = 0.36) -> gf.Component:
 
     c.add_ref(
         via_generator(
-            x_range=(rect_pcmpgr_out.xmin, rect_pcmpgr_in.xmin),
-            y_range=(rect_pcmpgr_in.ymin + con_size, rect_pcmpgr_in.ymax - con_size,),
+            x_range=(rect_pcmpgr_out.dxmin, rect_pcmpgr_in.dxmin),
+            y_range=(rect_pcmpgr_in.dymin + con_size, rect_pcmpgr_in.dymax - con_size,),
             via_enclosure=(con_comp_enc, con_comp_enc),
             via_layer=layer["contact"],
             via_size=(con_size, con_size),
@@ -224,8 +224,8 @@ def pcmpgr_gen(dn_rect, grw: float = 0.36) -> gf.Component:
 
     c.add_ref(
         via_generator(
-            x_range=(rect_pcmpgr_in.xmax, rect_pcmpgr_out.xmax),
-            y_range=(rect_pcmpgr_in.ymin + con_size, rect_pcmpgr_in.ymax - con_size,),
+            x_range=(rect_pcmpgr_in.dxmax, rect_pcmpgr_out.dxmax),
+            y_range=(rect_pcmpgr_in.dymin + con_size, rect_pcmpgr_in.dymax - con_size,),
             via_enclosure=(con_comp_enc, con_comp_enc),
             via_layer=layer["contact"],
             via_size=(con_size, con_size),
@@ -246,7 +246,7 @@ def pcmpgr_gen(dn_rect, grw: float = 0.36) -> gf.Component:
             layer=layer["metal1"],
         )
     )
-    comp_m1_out.move((rect_pcmpgr_in.xmin - grw, rect_pcmpgr_in.ymin - grw))
+    comp_m1_out.dmove((rect_pcmpgr_in.dxmin - grw, rect_pcmpgr_in.dymin - grw))
     c.add_ref(
         gf.geometry.boolean(
             A=rect_pcmpgr_out, B=rect_pcmpgr_in, operation="A-B", layer=layer["metal1"],
@@ -296,7 +296,7 @@ def plus_res_inst(
         sab_rect = c.add_ref(
             gf.components.rectangle(size=sab_rect_size, layer=layer["sab"],)
         )
-        sab_rect.center = res_mk.center
+        sab_rect.dcenter = res_mk.dcenter
 
         np_enc_cmp: float = 0.18
         pp_enc_cmp: float = 0.18
@@ -307,12 +307,12 @@ def plus_res_inst(
             layer=layer["comp"],
         )
     )
-    cmp.xmin = res_mk.xmin - cmp_res_ext
-    cmp.ymin = res_mk.ymin
+    cmp.dxmin = res_mk.dxmin - cmp_res_ext
+    cmp.dymin = res_mk.dymin
 
     cmp_con = via_stack(
-        x_range=(cmp.xmin, res_mk.xmin + con_enc),
-        y_range=(cmp.ymin, cmp.ymax),
+        x_range=(cmp.dxmin, res_mk.dxmin + con_enc),
+        y_range=(cmp.dymin, cmp.dymax),
         base_layer=layer["comp"],
         metal_level=1,
     )
@@ -329,16 +329,16 @@ def plus_res_inst(
         c.add_label(
             r0_lbl,
             position=(
-                cmp_con_arr.xmin + (cmp_con.size[0] / 2),
-                cmp_con_arr.ymin + (cmp_con.size[1] / 2),
+                cmp_con_arr.dxmin + (cmp_con.size[0] / 2),
+                cmp_con_arr.dymin + (cmp_con.size[1] / 2),
             ),
             layer=layer["metal1_label"],
         )
         c.add_label(
             r1_lbl,
             position=(
-                cmp_con_arr.xmax - (cmp_con.size[0] / 2),
-                cmp_con_arr.ymin + (cmp_con.size[1] / 2),
+                cmp_con_arr.dxmax - (cmp_con.size[0] / 2),
+                cmp_con_arr.dymin + (cmp_con.size[1] / 2),
             ),
             layer=layer["metal1_label"],
         )
@@ -349,8 +349,8 @@ def plus_res_inst(
             layer=cmp_imp_layer,
         )
     )
-    cmp_imp.xmin = cmp.xmin - np_enc_cmp
-    cmp_imp.ymin = cmp.ymin - np_enc_cmp
+    cmp_imp.dxmin = cmp.dxmin - np_enc_cmp
+    cmp_imp.dymin = cmp.dymin - np_enc_cmp
 
     if sub == 1:
 
@@ -362,14 +362,14 @@ def plus_res_inst(
         sub_rect = c.add_ref(
             gf.components.rectangle(size=sub_rect_size, layer=layer["comp"])
         )
-        sub_rect.center = cmp.center
-        sub_rect.xmax = cmp.xmin - comp_spacing
+        sub_rect.dcenter = cmp.dcenter
+        sub_rect.dxmax = cmp.dxmin - comp_spacing
 
         # sub_rect contact
         sub_con = c.add_ref(
             via_stack(
-                x_range=(sub_rect.xmin, sub_rect.xmax),
-                y_range=(sub_rect.ymin, sub_rect.ymax),
+                x_range=(sub_rect.dxmin, sub_rect.dxmax),
+                y_range=(sub_rect.dymin, sub_rect.dymax),
                 base_layer=layer["comp"],
                 metal_level=1,
             )
@@ -384,16 +384,16 @@ def plus_res_inst(
                 layer=sub_imp_layer,
             )
         )
-        sub_imp.xmin = sub_rect.xmin - pp_enc_cmp
-        sub_imp.ymin = sub_rect.ymin - pp_enc_cmp
+        sub_imp.dxmin = sub_rect.dxmin - pp_enc_cmp
+        sub_imp.dymin = sub_rect.dymin - pp_enc_cmp
 
         # label generation
         if lbl == 1:
             c.add_label(
                 sub_lbl,
                 position=(
-                    sub_con.xmin + (sub_con.size[0] / 2),
-                    sub_con.ymin + (sub_con.size[1] / 2),
+                    sub_con.dxmin + (sub_con.size[0] / 2),
+                    sub_con.dymin + (sub_con.size[1] / 2),
                 ),
                 layer=layer["metal1_label"],
             )
@@ -456,8 +456,8 @@ def draw_nplus_res(
                 layer=layer["lvpwell"],
             )
         )
-        lvpwell.xmin = r_inst.xmin - lvpwell_enc_cmp
-        lvpwell.ymin = r_inst.ymin - lvpwell_enc_cmp
+        lvpwell.dxmin = r_inst.dxmin - lvpwell_enc_cmp
+        lvpwell.dymin = r_inst.dymin - lvpwell_enc_cmp
 
         dn_rect = c.add_ref(
             gf.components.rectangle(
@@ -468,8 +468,8 @@ def draw_nplus_res(
                 layer=layer["dnwell"],
             )
         )
-        dn_rect.xmin = lvpwell.xmin - dn_enc_lvpwell
-        dn_rect.ymin = lvpwell.ymin - dn_enc_lvpwell
+        dn_rect.dxmin = lvpwell.dxmin - dn_enc_lvpwell
+        dn_rect.dymin = lvpwell.dymin - dn_enc_lvpwell
 
         if pcmpgr == 1:
             c.add_ref(pcmpgr_gen(dn_rect=dn_rect, grw=sub_w))
@@ -538,8 +538,8 @@ def draw_pplus_res(
                 layer=layer["dnwell"],
             )
         )
-        dn_rect.xmax = r_inst.xmax + dn_enc_pcmp
-        dn_rect.ymin = r_inst.ymin - dn_enc_pcmp
+        dn_rect.dxmax = r_inst.dxmax + dn_enc_pcmp
+        dn_rect.dymin = r_inst.dymin - dn_enc_pcmp
 
         if pcmpgr == 1:
             c.add_ref(pcmpgr_gen(dn_rect=dn_rect, grw=sub_w))
@@ -555,8 +555,8 @@ def draw_pplus_res(
                 layer=layer["nwell"],
             )
         )
-        nw_rect.xmin = r_inst.xmin - nw_enc_pcmp
-        nw_rect.ymin = r_inst.ymin - nw_enc_pcmp
+        nw_rect.dxmin = r_inst.dxmin - nw_enc_pcmp
+        nw_rect.dymin = r_inst.dymin - nw_enc_pcmp
 
     c.write_gds("res_temp.gds")
     layout.read("res_temp.gds")
@@ -605,7 +605,7 @@ def polyf_res_inst(
         sab_rect = c.add_ref(
             gf.components.rectangle(size=sab_rect_size, layer=layer["sab"],)
         )
-        sab_rect.center = res_mk.center
+        sab_rect.dcenter = res_mk.dcenter
 
     pl = c.add_ref(
         gf.components.rectangle(
@@ -613,12 +613,12 @@ def polyf_res_inst(
             layer=layer["poly2"],
         )
     )
-    pl.xmin = res_mk.xmin - pl_res_ext
-    pl.ymin = res_mk.ymin
+    pl.dxmin = res_mk.dxmin - pl_res_ext
+    pl.dymin = res_mk.dymin
 
     pl_con = via_stack(
-        x_range=(pl.xmin, res_mk.xmin + con_enc),
-        y_range=(pl.ymin, pl.ymax),
+        x_range=(pl.dxmin, res_mk.dxmin + con_enc),
+        y_range=(pl.dymin, pl.dymax),
         base_layer=layer["poly2"],
         metal_level=1,
     )
@@ -636,8 +636,8 @@ def polyf_res_inst(
             layer=pl_imp_layer,
         )
     )
-    pl_imp.xmin = pl.xmin - np_enc_poly2
-    pl_imp.ymin = pl.ymin - np_enc_poly2
+    pl_imp.dxmin = pl.dxmin - np_enc_poly2
+    pl_imp.dymin = pl.dymin - np_enc_poly2
 
     if (sub_w * w_res) < cmp_area:
         sub_rect_size = (sub_w, round(cmp_area / sub_w, 3))
@@ -647,14 +647,14 @@ def polyf_res_inst(
     sub_rect = c.add_ref(
         gf.components.rectangle(size=sub_rect_size, layer=layer["comp"])
     )
-    sub_rect.center = pl.center
-    sub_rect.xmax = pl.xmin - comp_spacing
+    sub_rect.dcenter = pl.dcenter
+    sub_rect.dxmax = pl.dxmin - comp_spacing
 
     # sub_rect contact
     sub_con = c.add_ref(
         via_stack(
-            x_range=(sub_rect.xmin, sub_rect.xmax),
-            y_range=(sub_rect.ymin, sub_rect.ymax),
+            x_range=(sub_rect.dxmin, sub_rect.dxmax),
+            y_range=(sub_rect.dymin, sub_rect.dymax),
             base_layer=layer["comp"],
             metal_level=1,
         )
@@ -669,24 +669,24 @@ def polyf_res_inst(
             layer=sub_imp_layer,
         )
     )
-    sub_imp.xmin = sub_rect.xmin - pp_enc_cmp
-    sub_imp.ymin = sub_rect.ymin - pp_enc_cmp
+    sub_imp.dxmin = sub_rect.dxmin - pp_enc_cmp
+    sub_imp.dymin = sub_rect.dymin - pp_enc_cmp
 
     # labels generation
     if lbl == 1:
         c.add_label(
             r0_lbl,
             position=(
-                pl_con_arr.xmin + (pl_con.size[0] / 2),
-                pl_con_arr.ymin + (pl_con.size[1] / 2),
+                pl_con_arr.dxmin + (pl_con.size[0] / 2),
+                pl_con_arr.dymin + (pl_con.size[1] / 2),
             ),
             layer=layer["metal1_label"],
         )
         c.add_label(
             r1_lbl,
             position=(
-                pl_con_arr.xmax - (pl_con.size[0] / 2),
-                pl_con_arr.ymin + (pl_con.size[1] / 2),
+                pl_con_arr.dxmax - (pl_con.size[0] / 2),
+                pl_con_arr.dymin + (pl_con.size[1] / 2),
             ),
             layer=layer["metal1_label"],
         )
@@ -694,8 +694,8 @@ def polyf_res_inst(
         c.add_label(
             sub_lbl,
             position=(
-                sub_con.xmin + (sub_con.size[0] / 2),
-                sub_con.ymin + (sub_con.size[1] / 2),
+                sub_con.dxmin + (sub_con.size[0] / 2),
+                sub_con.dymin + (sub_con.size[1] / 2),
             ),
             layer=layer["metal1_label"],
         )
@@ -761,7 +761,7 @@ def draw_npolyf_res(
                 layer=layer["dnwell"],
             )
         )
-        dn_rect.center = r_inst.center
+        dn_rect.dcenter = r_inst.dcenter
 
         if pcmpgr == 1:
             c.add_ref(pcmpgr_gen(dn_rect=dn_rect, grw=sub_w))
@@ -835,8 +835,8 @@ def draw_ppolyf_res(
                 layer=layer["dnwell"],
             )
         )
-        dn_rect.xmax = r_inst.xmax + dn_enc_poly2
-        dn_rect.ymin = r_inst.ymin - dn_enc_poly2
+        dn_rect.dxmax = r_inst.dxmax + dn_enc_poly2
+        dn_rect.dymin = r_inst.dymin - dn_enc_poly2
 
         if pcmpgr == 1:
             c.add_ref(pcmpgr_gen(dn_rect=dn_rect, grw=sub_w))
@@ -893,8 +893,8 @@ def draw_ppolyf_u_high_Rs_res(
         )
     )
 
-    resis_mk.xmin = res_mk.xmin - resis_enc[0]
-    resis_mk.ymin = res_mk.ymin - resis_enc[1]
+    resis_mk.dxmin = res_mk.dxmin - resis_enc[0]
+    resis_mk.dymin = res_mk.dymin - resis_enc[1]
 
     if (
         (res_mk.size[0] + (2 * sab_res_ext[0]))
@@ -913,7 +913,7 @@ def draw_ppolyf_u_high_Rs_res(
     sab_rect = c.add_ref(
         gf.components.rectangle(size=sab_rect_size, layer=layer["sab"],)
     )
-    sab_rect.center = res_mk.center
+    sab_rect.dcenter = res_mk.dcenter
 
     pl = c.add_ref(
         gf.components.rectangle(
@@ -921,12 +921,12 @@ def draw_ppolyf_u_high_Rs_res(
             layer=layer["poly2"],
         )
     )
-    pl.xmin = res_mk.xmin - pl_res_ext
-    pl.ymin = res_mk.ymin
+    pl.dxmin = res_mk.dxmin - pl_res_ext
+    pl.dymin = res_mk.dymin
 
     pl_con = via_stack(
-        x_range=(pl.xmin, pl.xmin + con_size),
-        y_range=(pl.ymin, pl.ymax),
+        x_range=(pl.dxmin, pl.dxmin + con_size),
+        y_range=(pl.dymin, pl.dymax),
         base_layer=layer["poly2"],
         metal_level=1,
     )
@@ -944,20 +944,20 @@ def draw_ppolyf_u_high_Rs_res(
         component=pplus, rows=1, columns=2, spacing=(pplus.size[0] + res_mk.size[0], 0)
     )
 
-    pplus_arr.xmin = pl.xmin - pp_enc_poly2
-    pplus_arr.ymin = pl.ymin - pp_enc_poly2
+    pplus_arr.dxmin = pl.dxmin - pp_enc_poly2
+    pplus_arr.dymin = pl.dymin - pp_enc_poly2
 
     sub_rect = c.add_ref(
         gf.components.rectangle(size=(sub_w, w_res), layer=layer["comp"])
     )
-    sub_rect.xmax = pl.xmin - comp_spacing
-    sub_rect.ymin = pl.ymin
+    sub_rect.dxmax = pl.dxmin - comp_spacing
+    sub_rect.dymin = pl.dymin
 
     # sub_rect contact
     sub_con = c.add_ref(
         via_stack(
-            x_range=(sub_rect.xmin, sub_rect.xmax),
-            y_range=(sub_rect.ymin, sub_rect.ymax),
+            x_range=(sub_rect.dxmin, sub_rect.dxmax),
+            y_range=(sub_rect.dymin, sub_rect.dymax),
             base_layer=layer["comp"],
             metal_level=1,
         )
@@ -968,16 +968,16 @@ def draw_ppolyf_u_high_Rs_res(
         c.add_label(
             r0_lbl,
             position=(
-                pl_con_arr.xmin + (pl_con.size[0] / 2),
-                pl_con_arr.ymin + (pl_con.size[1] / 2),
+                pl_con_arr.dxmin + (pl_con.size[0] / 2),
+                pl_con_arr.dymin + (pl_con.size[1] / 2),
             ),
             layer=layer["metal1_label"],
         )
         c.add_label(
             r1_lbl,
             position=(
-                pl_con_arr.xmax - (pl_con.size[0] / 2),
-                pl_con_arr.ymin + (pl_con.size[1] / 2),
+                pl_con_arr.dxmax - (pl_con.size[0] / 2),
+                pl_con_arr.dymin + (pl_con.size[1] / 2),
             ),
             layer=layer["metal1_label"],
         )
@@ -985,8 +985,8 @@ def draw_ppolyf_u_high_Rs_res(
         c.add_label(
             sub_lbl,
             position=(
-                sub_con.xmin + (sub_con.size[0] / 2),
-                sub_con.ymin + (sub_con.size[1] / 2),
+                sub_con.dxmin + (sub_con.size[0] / 2),
+                sub_con.dymin + (sub_con.size[1] / 2),
             ),
             layer=layer["metal1_label"],
         )
@@ -1010,21 +1010,21 @@ def draw_ppolyf_u_high_Rs_res(
         )
 
     sub_imp = c.add_ref(gf.components.rectangle(size=sub_imp_size, layer=sub_layer,))
-    sub_imp.center = sub_rect.center
+    sub_imp.dcenter = sub_rect.dcenter
 
     if deepnwell == 1:
 
         dn_rect = c.add_ref(
             gf.components.rectangle(
                 size=(
-                    (pl.xmax - sub_rect.xmin) + (dn_enc_poly2 + dn_enc_ncmp),
+                    (pl.dxmax - sub_rect.dxmin) + (dn_enc_poly2 + dn_enc_ncmp),
                     pl.size[1] + (2 * dn_enc_poly2),
                 ),
                 layer=layer["dnwell"],
             )
         )
-        dn_rect.xmax = pl.xmax + dn_enc_poly2
-        dn_rect.ymin = pl.ymin - dn_enc_poly2
+        dn_rect.dxmax = pl.dxmax + dn_enc_poly2
+        dn_rect.dymin = pl.dymin - dn_enc_poly2
 
         if volt == "5/6V":
             dg = c.add_ref(
@@ -1037,8 +1037,8 @@ def draw_ppolyf_u_high_Rs_res(
                 )
             )
 
-            dg.xmin = dn_rect.xmin - dg_enc_dn
-            dg.ymin = dn_rect.ymin - dg_enc_dn
+            dg.dxmin = dn_rect.dxmin - dg_enc_dn
+            dg.dymin = dn_rect.dymin - dg_enc_dn
 
         if pcmpgr == 1:
             c.add_ref(pcmpgr_gen(dn_rect=dn_rect, grw=sub_w))
@@ -1051,8 +1051,8 @@ def draw_ppolyf_u_high_Rs_res(
                 )
             )
 
-            dg.xmin = resis_mk.xmin
-            dg.ymin = resis_mk.ymin
+            dg.dxmin = resis_mk.dxmin
+            dg.dymin = resis_mk.dymin
 
     c.write_gds("res_temp.gds")
     layout.read("res_temp.gds")
@@ -1104,8 +1104,8 @@ def draw_well_res(
             size=(res_mk.size[0] + (2 * nw_res_ext), w_res), layer=well_layer
         )
     )
-    well_rect.xmin = res_mk.xmin - nw_res_ext
-    well_rect.ymin = res_mk.ymin + nw_res_enc
+    well_rect.dxmin = res_mk.dxmin - nw_res_ext
+    well_rect.dymin = res_mk.dymin + nw_res_enc
 
     @gf.cell
     def comp_related_gen(size: Float2 = (0.42, 0.42)) -> gf.Component:
@@ -1113,13 +1113,13 @@ def draw_well_res(
         c = gf.Component()
 
         cmp = c.add_ref(gf.components.rectangle(size=size, layer=layer["comp"]))
-        cmp.xmin = well_rect.xmin + nw_enc_cmp
-        cmp.ymin = well_rect.ymin + nw_enc_cmp
+        cmp.dxmin = well_rect.dxmin + nw_enc_cmp
+        cmp.dymin = well_rect.dymin + nw_enc_cmp
 
         c.add_ref(
             via_stack(
-                x_range=(cmp.xmin, cmp.xmax),
-                y_range=(cmp.ymin, cmp.ymax),
+                x_range=(cmp.dxmin, cmp.dxmax),
+                y_range=(cmp.dymin, cmp.dymax),
                 base_layer=layer["comp"],
                 metal_level=1,
             )
@@ -1129,7 +1129,7 @@ def draw_well_res(
 
     con_polys = comp_related_gen(
         size=(
-            res_mk.xmin - well_rect.xmin - nw_enc_cmp,
+            res_mk.dxmin - well_rect.dxmin - nw_enc_cmp,
             well_rect.size[1] - (2 * nw_enc_cmp),
         )
     )
@@ -1154,20 +1154,20 @@ def draw_well_res(
         columns=2,
         spacing=(well_rect.size[0] - (2 * nw_enc_cmp) - con_polys.size[0], 0),
     )
-    nplus_arr.xmin = con_polys.xmin - pp_enc_cmp
-    nplus_arr.ymin = con_polys.ymin - pp_enc_cmp
+    nplus_arr.dxmin = con_polys.dxmin - pp_enc_cmp
+    nplus_arr.dymin = con_polys.dymin - pp_enc_cmp
 
     sub_rect = c.add_ref(
         gf.components.rectangle(size=(sub_w, well_rect.size[1]), layer=layer["comp"])
     )
-    sub_rect.xmax = well_rect.xmin - nw_comp_spacing
-    sub_rect.ymin = well_rect.ymin
+    sub_rect.dxmax = well_rect.dxmin - nw_comp_spacing
+    sub_rect.dymin = well_rect.dymin
 
     # sub_rect contact
     sub_con = c.add_ref(
         via_stack(
-            x_range=(sub_rect.xmin, sub_rect.xmax),
-            y_range=(sub_rect.ymin, sub_rect.ymax),
+            x_range=(sub_rect.dxmin, sub_rect.dxmax),
+            y_range=(sub_rect.dymin, sub_rect.dymax),
             base_layer=layer["comp"],
             metal_level=1,
         )
@@ -1182,8 +1182,8 @@ def draw_well_res(
             layer=sub_imp_layer,
         )
     )
-    sub_imp.xmin = sub_rect.xmin - pp_enc_cmp
-    sub_imp.ymin = sub_rect.ymin - pp_enc_cmp
+    sub_imp.dxmin = sub_rect.dxmin - pp_enc_cmp
+    sub_imp.dymin = sub_rect.dymin - pp_enc_cmp
 
     if res_type == "pwell":
 
@@ -1196,8 +1196,8 @@ def draw_well_res(
                 layer=layer["dnwell"],
             )
         )
-        dn_rect.xmin = well_rect.xmin - dn_enc_lvpwell
-        dn_rect.ymin = well_rect.ymin - dn_enc_lvpwell
+        dn_rect.dxmin = well_rect.dxmin - dn_enc_lvpwell
+        dn_rect.dymin = well_rect.dymin - dn_enc_lvpwell
 
         if pcmpgr == 1:
             c.add_ref(pcmpgr_gen(dn_rect=dn_rect, grw=sub_w))
@@ -1207,16 +1207,16 @@ def draw_well_res(
         c.add_label(
             r0_lbl,
             position=(
-                con_polys_arr.xmin + (con_polys.size[0] / 2),
-                con_polys_arr.ymin + (con_polys.size[1] / 2),
+                con_polys_arr.dxmin + (con_polys.size[0] / 2),
+                con_polys_arr.dymin + (con_polys.size[1] / 2),
             ),
             layer=layer["metal1_label"],
         )
         c.add_label(
             r1_lbl,
             position=(
-                con_polys_arr.xmax - (con_polys.size[0] / 2),
-                con_polys_arr.ymin + (con_polys.size[1] / 2),
+                con_polys_arr.dxmax - (con_polys.size[0] / 2),
+                con_polys_arr.dymin + (con_polys.size[1] / 2),
             ),
             layer=layer["metal1_label"],
         )
@@ -1224,8 +1224,8 @@ def draw_well_res(
         c.add_label(
             sub_lbl,
             position=(
-                sub_con.xmin + (sub_con.size[0] / 2),
-                sub_con.ymin + (sub_con.size[1] / 2),
+                sub_con.dxmin + (sub_con.size[0] / 2),
+                sub_con.dymin + (sub_con.size[1] / 2),
             ),
             layer=layer["metal1_label"],
         )
