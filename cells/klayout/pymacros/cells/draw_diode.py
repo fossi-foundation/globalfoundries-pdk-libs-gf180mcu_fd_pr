@@ -1785,10 +1785,9 @@ def draw_sc_diode(
         spacing=((cw + wa + (2 * sc_comp_spacing)), 0),
     )
 
-    cath_m1_polys = sc_cath.get_polygons(by_spec=layer["metal1"])
-    cath_m1_xmin = np.min(cath_m1_polys[0][:, 0])
-    cath_m1_ymin = np.min(cath_m1_polys[0][:, 1])
-    cath_m1_xmax = np.max(cath_m1_polys[0][:, 0])
+    cath_m1_xmin = sc_cathode.dxmin
+    cath_m1_ymin = sc_cathode.dymin
+    cath_m1_xmax = sc_cathode.dxmax
 
     cath_m1_v = c.add_array(
         component=gf.components.rectangle(
@@ -1832,11 +1831,10 @@ def draw_sc_diode(
 
     sc_anode.dxmin = sc_cathode.dxmin + (cw + sc_comp_spacing + np_enc_comp)
 
-    an_m1_polys = sc_anode.get_polygons(by_spec=layer["metal1"])
-    an_m1_xmin = np.min(an_m1_polys[0][:, 0])
-    an_m1_ymin = np.min(an_m1_polys[0][:, 1])
-    an_m1_xmax = np.max(an_m1_polys[0][:, 0])
-    an_m1_ymax = np.max(an_m1_polys[0][:, 1])
+    an_m1_xmin = sc_anode.dxmin
+    an_m1_ymin = sc_anode.dymin
+    an_m1_xmax = sc_anode.dxmax
+    an_m1_ymax = sc_anode.dymax
 
     if m > 1:
 
