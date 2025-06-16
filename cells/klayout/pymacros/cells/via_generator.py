@@ -139,9 +139,9 @@ def via_stack(
         )
         con = c.add_ref(con_gen)
 
-        m1_x = con.size[0] + 2 * con_enc
+        m1_x = con.dxsize + 2 * con_enc
 
-        m1_y = con.size[1] + 2 * con_enc
+        m1_y = con.dysize + 2 * con_enc
 
         if (m1_x * m1_y) < m1_area:
             m1_size = (m1_x, round(m1_area / m1_x, 3))
@@ -164,7 +164,7 @@ def via_stack(
 
         m2 = c.add_ref(
             gf.components.rectangle(
-                size=(m1.size[0], m1.size[1]), layer=layer["metal2"]
+                size=(m1.dxsize, m1.dysize), layer=layer["metal2"]
             )
         )
         m2.dcenter = via1.dcenter
@@ -182,7 +182,7 @@ def via_stack(
 
         m3 = c.add_ref(
             gf.components.rectangle(
-                size=(m1.size[0], m1.size[1]), layer=layer["metal3"]
+                size=(m1.dxsize, m1.dysize), layer=layer["metal3"]
             )
         )
         m3.dcenter = via2.dcenter
@@ -200,7 +200,7 @@ def via_stack(
 
         m4 = c.add_ref(
             gf.components.rectangle(
-                size=(m1.size[0], m1.size[1]), layer=layer["metal4"]
+                size=(m1.dxsize, m1.dysize), layer=layer["metal4"]
             )
         )
         m4.dcenter = via3.dcenter
@@ -218,7 +218,7 @@ def via_stack(
 
         m5 = c.add_ref(
             gf.components.rectangle(
-                size=(m1.size[0], m1.size[1]), layer=layer["metal5"]
+                size=(m1.dxsize, m1.dysize), layer=layer["metal5"]
             )
         )
         m5.dcenter = via4.dcenter
