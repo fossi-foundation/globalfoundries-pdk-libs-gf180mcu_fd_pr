@@ -236,7 +236,7 @@ def draw_cap_mos(
         )
     )
 
-    cmp_m1_polys = c_inst.get_polygons(by_spec=layer["metal1"])
+    cmp_m1_polys = gf.Component(base=c_inst.cell.base).get_polygons_points(by='tuple', layers=[layer["metal1"]])[layer["metal1"]]
     cmp_m1_xmin = np.min(cmp_m1_polys[0][:, 0])
     cmp_m1_xmax = np.max(cmp_m1_polys[0][:, 0])
     cmp_m1_ymax = np.max(cmp_m1_polys[0][:, 1])
@@ -272,7 +272,7 @@ def draw_cap_mos(
 
     # dualgate
 
-    cmp_polys = c_inst.get_polygons(by_spec=layer["comp"])
+    cmp_polys = gf.Component(base=c_inst.cell.base).get_polygons_points(by='tuple', layers=[layer["comp"]])[layer["comp"]]
     cmp_xmin = np.min(cmp_polys[0][:, 0])
     cmp_ymin = np.min(cmp_polys[0][:, 1])
     cmp_xmax = np.max(cmp_polys[0][:, 0])
