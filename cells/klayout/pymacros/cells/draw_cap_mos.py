@@ -236,8 +236,6 @@ def draw_cap_mos(
         )
     )
 
-    print(f"c_inst is type {c_inst.__class__}, methods={dir(c_inst)}")
-
     cmp_m1_polys = c_inst.get_polygons(by_spec=layer["metal1"])
     cmp_m1_xmin = np.min(cmp_m1_polys[0][:, 0])
     cmp_m1_xmax = np.max(cmp_m1_polys[0][:, 0])
