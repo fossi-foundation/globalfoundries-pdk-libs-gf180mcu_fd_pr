@@ -1619,7 +1619,9 @@ def draw_nfet(
                 layer=layer["pplus"],
             )
         )
-        psdm.connect("e1", nsdm.ports["e3"])
+        psdm.connect("e1", nsdm.ports["e3"],
+                     allow_width_mismatch=True,
+                     allow_layer_mismatch=True)
 
         bulk_con = via_stack(
             x_range=(sd_con_arr.dxmax + m1_sp, rect_bulk.dxmax),
@@ -2260,7 +2262,9 @@ def draw_pfet(
                 layer=layer["nplus"],
             )
         )
-        nsdm.connect("e1", psdm.ports["e3"])
+        nsdm.connect("e1", psdm.ports["e3"],
+                     allow_width_mismatch=True,
+                     allow_layer_mismatch=True)
 
         bulk_con = via_stack(
             x_range=(sd_con_arr.dxmax + m1_sp, rect_bulk.dxmax),
