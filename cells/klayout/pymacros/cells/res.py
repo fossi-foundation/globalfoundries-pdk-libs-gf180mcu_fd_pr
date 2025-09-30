@@ -192,7 +192,7 @@ class metal_resistor(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         dbu_PERCISION = 1 / self.layout.dbu
@@ -290,7 +290,7 @@ class nplus_s_resistor(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         dbu_PERCISION = 1 / self.layout.dbu
@@ -389,7 +389,7 @@ class pplus_s_resistor(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         dbu_PERCISION = 1 / self.layout.dbu
@@ -488,7 +488,7 @@ class nplus_u_resistor(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         dbu_PERCISION = 1 / self.layout.dbu
@@ -587,7 +587,7 @@ class pplus_u_resistor(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         dbu_PERCISION = 1 / self.layout.dbu
@@ -683,7 +683,7 @@ class nwell_resistor(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         dbu_PERCISION = 1 / self.layout.dbu
@@ -779,7 +779,7 @@ class pwell_resistor(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         dbu_PERCISION = 1 / self.layout.dbu
@@ -876,7 +876,7 @@ class npolyf_s_resistor(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         dbu_PERCISION = 1 / self.layout.dbu
@@ -974,7 +974,7 @@ class ppolyf_s_resistor(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         dbu_PERCISION = 1 / self.layout.dbu
@@ -1072,7 +1072,7 @@ class npolyf_u_resistor(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         dbu_PERCISION = 1 / self.layout.dbu
@@ -1170,7 +1170,7 @@ class ppolyf_u_resistor(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         dbu_PERCISION = 1 / self.layout.dbu
@@ -1276,7 +1276,7 @@ class ppolyf_u_high_Rs_resistor(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         dbu_PERCISION = 1 / self.layout.dbu

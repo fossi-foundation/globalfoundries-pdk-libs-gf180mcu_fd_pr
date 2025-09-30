@@ -114,7 +114,7 @@ class diode_nd2ps(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         np_instance = draw_diode_nd2ps(
@@ -204,7 +204,7 @@ class diode_pd2nw(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         np_instance = draw_diode_pd2nw(
@@ -292,7 +292,7 @@ class diode_nw2ps(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         nwp_instance = draw_diode_nw2ps(
@@ -381,7 +381,7 @@ class diode_pw2dw(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         diode_pw2dw_instance = draw_diode_pw2dw(
@@ -468,7 +468,7 @@ class diode_dw2ps(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         diode_dw2ps_instance = draw_diode_dw2ps(
@@ -551,7 +551,7 @@ class sc_diode(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        return pya.Trans(self.shape.bbox().center())
+        return pya.Trans(self.shape.bbox().dcenter())
 
     def produce_impl(self):
         sc_instance = draw_sc_diode(

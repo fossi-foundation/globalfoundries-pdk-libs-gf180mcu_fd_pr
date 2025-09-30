@@ -72,7 +72,7 @@ class efuse(pya.PCellDeclarationHelper):
     def transformation_from_shape_impl(self):
         # Implement the "Create PCell from shape" protocol: we use the center of the shape's
         # bounding box to determine the transformation
-        # return pya.Trans(self.shape.bbox().center())
+        # return pya.Trans(self.shape.bbox().dcenter())
         pass
 
     def produce_impl(self):

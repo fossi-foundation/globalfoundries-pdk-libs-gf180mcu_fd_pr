@@ -18,6 +18,11 @@
 
 import pya
 
+# NOTE: the cell code was written for gdsfactory v7
+#       install mixins for legacy classes for gdsfactory v9 compatiblity
+from ._patches import patch_legacy_classes
+patch_legacy_classes()
+
 from .fet import nfet, pfet, nfet_06v0_nvt
 from .diode import (
     diode_dw2ps,
