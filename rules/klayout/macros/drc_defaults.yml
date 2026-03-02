@@ -7,3 +7,5 @@ feol: true
 beol: true
 offgrid: true
 connectivity: false
+thread_workers: 2
+
