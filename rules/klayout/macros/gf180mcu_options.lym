@@ -70,7 +70,7 @@ class OptionMenuBuilder
     action.checked = initial_checked
     action.on_triggered do
       opts = @get_opts.call
-      opts[key] = action.checked?
+      opts[key] = action.is_checked?
       @save_opts.call(opts)
     end
     @mw.menu.insert_item("#{@menu_path}.end", menu_id || key, action)
