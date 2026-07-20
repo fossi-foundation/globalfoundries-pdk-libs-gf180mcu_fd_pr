@@ -38360,8 +38360,7 @@ d2 3 2 nwp area='r_w*r_l/2'
 + rsh='40+mc_rt_npolyf_u*res_mc_skew*sw_stat_global'
 + tc1=-0.735e-3
 + tc2=-1.7e-6
-.model fox_sub c
-+ level=1
+.model fox_sub c cj=8.85e-05
 rt1 1 11 npolyf_u_t l='s*1u' w='r_w'
 c1 1 3 fox_sub l='r_l/2' w='r_w'
 rb 11 21 npolyf_u_body l='r_l' r='r_temp*r_n*(r_rsh0+r_vc1*abs(v(11,21))/r_n+r_vc2*abs(v(11,21))*abs(v(11,21))/r_n/r_n)*(1+mis_r*sw_stat_mismatch)' w='r_w'
@@ -38376,8 +38375,7 @@ c2 2 3 fox_sub l='r_l/2' w='r_w'
 + rsh='60+mc_rt_ppolyf_u*res_mc_skew*sw_stat_global'
 + tc1=-1.47e-3
 + tc2=0.82e-6
-.model fox_sub c
-+ level=1
+.model fox_sub c cj=8.85e-05
 rt1 1 11 ppolyf_u_t l='s*1u' w='r_w'
 c1 1 3 fox_sub l='r_l/2' w='r_w'
 rb 11 21 ppolyf_u_body l='r_l' r='(r_temp*r_n*(r_rsh0+r_vc1*abs(v(11,21))/r_n+r_vc2*abs(v(11,21))*abs(v(11,21))/r_n/r_n))*(1+mis_r*sw_stat_mismatch)' w='r_w'
@@ -38392,8 +38390,7 @@ c2 2 3 fox_sub l='r_l/2' w='r_w'
 + rsh=5.5
 + tc1=1.28e-3
 + tc2=-0.5e-6
-.model fox_sub c
-+ level=1
+.model fox_sub c cj=8.85e-05
 rt1 1 11 npolyf_s_t l='s*1u' w='r_w'
 c1 1 3 fox_sub l='r_l/2' w='r_w'
 rb 11 21 npolyf_s_body l='r_l' r='r_temp*r_n*(r_rsh0+r_vc1*abs(v(11,21))/r_n+r_vc2*abs(v(11,21))*abs(v(11,21))/r_n/r_n)' w='r_w'
@@ -38408,8 +38405,7 @@ c2 2 3 fox_sub l='r_l/2' w='r_w'
 + rsh=5
 + tc1=1.254e-3
 + tc2=-0.27e-6
-.model fox_sub c
-+ level=1
+.model fox_sub c cj=8.85e-05
 rt1 1 11 ppolyf_s_t l='s*1u' w='r_w'
 c1 1 3 fox_sub l='r_l/2' w='r_w'
 rb 11 21 ppolyf_s_body l='r_l' r='(r_temp*r_n*(r_rsh0+r_vc1*abs(v(11,21))/r_n+r_vc2*abs(v(11,21))*abs(v(11,21))/r_n/r_n))' w='r_w'
@@ -38436,8 +38432,7 @@ c2 2 3 fox_sub l='r_l/2' w='r_w'
 + rsh='85.45+mc_rt_ppolyf_u_1k*res_mc_skew*sw_stat_global'
 + tc1=-7.92e-3
 + tc2=4.25e-5
-.model fox_sub c
-+ level=1
+.model fox_sub c cj=8.85e-05
 rt1 1 11 ppolyf_u_1k_t l='s*1u' w='r_w'
 c1 1 3 fox_sub l='r_l/2' w='r_w'
 rb 11 21 ppolyf_u_1k_body l='r_l' r='r_temp*r_n*(r_rsh0+r_vc1*abs(v(11,21))/r_n+r_vc2*abs(v(11,21))*abs(v(11,21))/r_n/r_n)' w='r_w'
@@ -38464,8 +38459,7 @@ c2 2 3 fox_sub l='r_l/2' w='r_w'
 + rsh='33.16+mc_rt_ppolyf_u_2k*res_mc_skew*sw_stat_global'
 + tc1=-0.003763316
 + tc2=9.81166e-06
-.model fox_sub c
-+ level=1
+.model fox_sub c cj=8.85e-05
 rt1 1 11 ppolyf_u_2k_t l='s*1u' w='r_w'
 c1 1 3 fox_sub l='r_l/2' w='r_w'
 rb 11 21 ppolyf_u_2k_body l='r_l' r='r_temp*r_n*(r_rsh0+r_vc1*abs(v(11,21))/r_n+r_vc2*abs(v(11,21))*abs(v(11,21))/r_n/r_n)' w='r_w'
@@ -38492,8 +38486,7 @@ c2 2 3 fox_sub l='r_l/2' w='r_w'
 + rsh='85.45+mc_rt_ppolyf_u_1k_6p0*res_mc_skew*sw_stat_global'
 + tc1=-7.92e-3
 + tc2=4.25e-5
-.model fox_sub c
-+ level=1
+.model fox_sub c cj=8.85e-05
 rt1 1 11 ppolyf_u_1k_t l='s*1u' w='r_w'
 c1 1 3 fox_sub l='r_l/2' w='r_w'
 rb 11 21 ppolyf_u_1k_body l='r_l' r='r_temp*r_n*(r_rsh0+r_vc1*abs(v(11,21))/r_n+r_vc2*abs(v(11,21))*abs(v(11,21))/r_n/r_n)' w='r_w'
@@ -38520,8 +38513,7 @@ c2 2 3 fox_sub l='r_l/2' w='r_w'
 + rsh='33.16+mc_rt_ppolyf_u_2k_6p0*res_mc_skew*sw_stat_global'
 + tc1=-0.003763316
 + tc2=9.81166e-06
-.model fox_sub c
-+ level=1
+.model fox_sub c cj=8.85e-05
 rt1 1 11 ppolyf_u_2k_t l='s*1u' w='r_w'
 c1 1 3 fox_sub l='r_l/2' w='r_w'
 rb 11 21 ppolyf_u_2k_body l='r_l' r='r_temp*r_n*(r_rsh0+r_vc1*abs(v(11,21))/r_n+r_vc2*abs(v(11,21))*abs(v(11,21))/r_n/r_n)' w='r_w'
@@ -38548,8 +38540,7 @@ c2 2 3 fox_sub l='r_l/2' w='r_w'
 + rsh='33.16+mc_rt_ppolyf_u_3k*res_mc_skew*sw_stat_global'
 + tc1=-0.003763316
 + tc2=9.81166e-06
-.model fox_sub c
-+ level=1
+.model fox_sub c cj=8.85e-05
 rt1 1 11 ppolyf_u_3k_t l='s*1u' w='r_w'
 c1 1 3 fox_sub l='r_l/2' w='r_w'
 rb 11 21 ppolyf_u_3k_body l='r_l' r='r_temp*r_n*(r_rsh0+r_vc1*abs(v(11,21))/r_n+r_vc2*abs(v(11,21))*abs(v(11,21))/r_n/r_n)' w='r_w'
