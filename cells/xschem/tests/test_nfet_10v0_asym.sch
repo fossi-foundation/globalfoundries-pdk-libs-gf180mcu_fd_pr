@@ -76,7 +76,7 @@ tclcommand="
 xschem raw_read $netlist_dir/[file tail [file rootname [xschem get current_name]]].raw
 "
 }
-C {symbols/nfet_10v0_asym.sym} 110 -410 0 0 {name=M1
+C {gf180mcu_fd_pr/nfet_10v0_asym.sym} 110 -410 0 0 {name=M1
 L=0.60u
 W=25u
 nf=1

@@ -93,7 +93,7 @@ tclcommand="
 xschem raw_read $netlist_dir/[file tail [file rootname [xschem get current_name]]].raw
 "
 }
-C {symbols/rm2.sym} 130 -410 0 0 {name=R1
+C {gf180mcu_fd_pr/rm2.sym} 130 -410 0 0 {name=R1
 W=0.6e-6
 L=60e-6
 model=rm2

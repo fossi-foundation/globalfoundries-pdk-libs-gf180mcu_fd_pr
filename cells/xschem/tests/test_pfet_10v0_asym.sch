@@ -76,7 +76,7 @@ value="
 .lib $::180MCU_MODELS/sm141064.ngspice typical
 .lib $::180MCU_MODELS/smbb000149.ngspice typical
 "}
-C {symbols/pfet_10v0_asym.sym} 110 -410 0 0 {name=M1
+C {gf180mcu_fd_pr/pfet_10v0_asym.sym} 110 -410 0 0 {name=M1
 L=0.6u
 W=25u
 nf=1
