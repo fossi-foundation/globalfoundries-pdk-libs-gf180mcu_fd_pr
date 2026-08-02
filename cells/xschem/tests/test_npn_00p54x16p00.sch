@@ -95,7 +95,7 @@ tclcommand="
 xschem raw_read $netlist_dir/[file tail [file rootname [xschem get current_name]]].raw
 "
 }
-C {symbols/npn_00p54x16p00.sym} 190 -390 0 0 {name=Q1
+C {gf180mcu_fd_pr/npn_00p54x16p00.sym} 190 -390 0 0 {name=Q1
 model=npn_00p54x16p00
 spiceprefix=X
 m=1}

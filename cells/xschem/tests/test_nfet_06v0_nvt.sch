@@ -68,7 +68,7 @@ write test_nfet_06v0_nvt.raw
 .endc
 "}
 C {devices/title.sym} 160 -30 0 0 {name=l5 author="GlobalFoundries PDK Authors"}
-C {symbols/nfet_06v0_nvt.sym} 110 -410 0 0 {name=M1
+C {gf180mcu_fd_pr/nfet_06v0_nvt.sym} 110 -410 0 0 {name=M1
 L=1.80u
 W=0.80u
 nf=1

@@ -99,7 +99,7 @@ tclcommand="
 xschem raw_read $netlist_dir/[file tail [file rootname [xschem get current_name]]].raw
 "
 }
-C {symbols/cap_pmos_03v3_b.sym} 230 -390 0 0 {name=C1
+C {gf180mcu_fd_pr/cap_pmos_03v3_b.sym} 230 -390 0 0 {name=C1
 W=10e-6
 L=10e-6
 model=cap_pmos_03v3_b

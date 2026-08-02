@@ -75,7 +75,7 @@ xschem raw_read $netlist_dir/[file tail [file rootname [xschem get current_name]
 }
 C {devices/gnd.sym} 230 -290 0 0 {name=l2 lab=GND}
 C {devices/lab_pin.sym} 230 -490 0 1 {name=l3 sig_type=std_logic lab=P}
-C {symbols/diode_nw2ps_03v3.sym} 230 -390 0 0 {name=D1
+C {gf180mcu_fd_pr/diode_nw2ps_03v3.sym} 230 -390 0 0 {name=D1
 model=diode_nw2ps_03v3
 r_w=1u
 r_l=1u
