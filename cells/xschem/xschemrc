@@ -326,7 +326,14 @@ if { [info exists env(PDK_ROOT)] && $env(PDK_ROOT) ne {} } {
 }
 
 if {[info exists PDK_ROOT]} {
+  # Setup models paths
   set 180MCU_MODELS ${PDK_ROOT}/models/ngspice
   puts stderr "pdk installation: using $PDK_ROOT"
   puts stderr "180MCU_MODELS: $180MCU_MODELS"
+
+  # Source auxiliary xschem files
+  if {[info exists env(PDK)]} {
+    source $env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/xschem-menu
+  }
 }
+
