@@ -56,6 +56,9 @@ line_spaces = {
   "Metal2" => 1.2,
   "Metal3" => 1.2,
   "Metal4" => 1.2,
+  # TODO differentiate between normal
+  # and thick top metal (3um).
+  # For now, assume worst case.
   "Metal5" => 2
 }
 
@@ -131,6 +134,7 @@ for metal in do_layers
   tp.tile_border(30, 30)
   
   tp.input("Metal", $ly, $top_cell.cell_index, metal_layers[metal])
+  tp.input("Metal_Dummy", $ly, $top_cell.cell_index, fill_layers[metal])
   tp.input("subsequent_metal", $ly, $top_cell.cell_index, subsequent_metals[metal])
   tp.input("previous_metal", $ly, $top_cell.cell_index, previous_metals[metal])
   tp.input("FuseTop", $ly, $top_cell.cell_index, FuseTop)
@@ -146,6 +150,9 @@ for metal in do_layers
   tp.input("Metal3", $ly, $top_cell.cell_index, Metal3)
   tp.input("Metal4", $ly, $top_cell.cell_index, Metal4)
   tp.input("Metal5", $ly, $top_cell.cell_index, Metal5)
+
+  # DM.2a, DM.2c
+  tp.var("space_to_Metal_Dummy", line_spaces[metal] / $ly.dbu)
 
   # DM.3
   tp.var("space_to_Metal", 2.0 / $ly.dbu)
@@ -178,6 +185,7 @@ var scribe_line_ring = _frame - _frame.sized(-space_to_scribe_line);
 
 var fill_region = _tile & _frame
                   - Metal.sized(space_to_Metal)
+                  - Metal_Dummy.sized(space_to_Metal_Dummy)
                   - FuseTop.sized(space_to_FuseTop)
                   - POLYFUSE.sized(space_to_POLYFUSE)
                   - FUSEWINDOW_D.sized(space_to_FUSEWINDOW_D)
@@ -194,6 +202,7 @@ var scribe_line_ring = _frame - _frame.sized(-space_to_scribe_line);
 
 var fill_region = _tile & _frame
                   - Metal.sized(space_to_Metal)
+                  - Metal_Dummy.sized(space_to_Metal_Dummy)
                   - previous_metal.sized(space_to_previous_Metal)
                   - subsequent_metal.sized(space_to_subsequent_Metal)
                   - FuseTop.sized(space_to_FuseTop)
