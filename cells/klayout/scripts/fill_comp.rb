@@ -49,6 +49,7 @@ tp.tile_size(tile_size, tile_size)
 tp.tile_border(30, 30)
 
 tp.input("COMP", $ly, $top_cell.cell_index, COMP)
+tp.input("COMP_Dummy", $ly, $top_cell.cell_index, COMP_Dummy)
 tp.input("Poly2", $ly, $top_cell.cell_index, Poly2)
 tp.input("NDMY", $ly, $top_cell.cell_index, NDMY)
 
@@ -61,14 +62,14 @@ tp.input("RES_MK", $ly, $top_cell.cell_index, RES_MK)
 tp.input("Pad", $ly, $top_cell.cell_index, Pad)
 tp.input("IND_MK", $ly, $top_cell.cell_index, IND_MK)
 
-tp.var("line_space", line_space / $ly.dbu)
-
 # DPF.1
 # Make sure to exclude some space at the tile border
 # to ensure there will be no dummy poly2 without a
 # dummy comp
 tp.var("Poly2_extension", 0.3 / $ly.dbu)
 
+# DCF.2a
+tp.var("space_to_COMP_Dummy", line_space / $ly.dbu)
 # DCF.4
 tp.var("space_to_COMP", 3.5 / $ly.dbu)
 # DCF.5
@@ -107,6 +108,7 @@ tp.output("to_fill", TilingOperator::new($ly, $fill_cell_comp, fill_cell.cell_in
 tp.queue("
 
 # DCF.1a - use octagon_limit for sizing, do multiple steps for better performance
+# TODO: do we actually need to keep 20um area empty? 'must be filled'
 var COMP_20um_spacing = COMP.sized(um10, 0, mode=2).sized(0, um10, mode=2).sized(-um10, 0, mode=2).sized(0, -um10, mode=2);
 
 # DCF.6abcd
@@ -122,6 +124,7 @@ var scribe_line_ring = _frame - _frame.sized(-space_to_scribe_line);
 var fill_region = _tile & _frame
                   - _tile.not(_tile.sized(-Poly2_extension))
                   - COMP_20um_spacing.sized(space_to_COMP)
+                  - COMP_Dummy.sized(space_to_COMP_Dummy)
                   - Poly2.sized(space_to_Poly2)
                   - Nwell_ring
                   - DNWELL_ring

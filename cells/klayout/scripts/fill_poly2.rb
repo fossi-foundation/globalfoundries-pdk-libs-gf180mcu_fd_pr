@@ -50,6 +50,7 @@ tp.tile_border(30, 30)
 
 tp.input("COMP", $ly, $top_cell.cell_index, COMP)
 tp.input("Poly2", $ly, $top_cell.cell_index, Poly2)
+tp.input("Poly2_Dummy", $ly, $top_cell.cell_index, Poly2_Dummy)
 tp.input("NDMY", $ly, $top_cell.cell_index, NDMY)
 tp.input("PMNDMY", $ly, $top_cell.cell_index, PMNDMY)
 tp.input("MTPMK", $ly, $top_cell.cell_index, MTPMK)
@@ -68,6 +69,8 @@ tp.input("Metal2", $ly, $top_cell.cell_index, Metal2)
 
 tp.var("line_space", line_space / $ly.dbu)
 
+# DPF.2a
+tp.var("space_to_Poly2_Dummy", line_space / $ly.dbu)
 # DPF.4
 tp.var("space_to_COMP", 3.2 / $ly.dbu)
 # DPF.5
@@ -136,6 +139,7 @@ var scribe_line_ring = _frame - _frame.sized(-space_to_scribe_line);
 var fill_region = _tile & _frame
                   - COMP_20um_spacing.sized(space_to_COMP)
                   - Poly2.sized(space_to_Poly2)
+                  - Poly2_Dummy.sized(space_to_Poly2_Dummy)
                   - Nwell_ring
                   - DNWELL_ring
                   - LVPWELL_ring
