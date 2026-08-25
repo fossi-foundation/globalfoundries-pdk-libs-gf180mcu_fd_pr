@@ -123,9 +123,6 @@ tp.output("to_fill", TilingOperator::new($ly, $fill_cell_poly2, fill_cell.cell_i
 # (see https://www.klayout.de/doc-qt4/about/expressions.html)
 tp.queue("
 
-# DPF.1a - use octagon_limit for sizing, do multiple steps for better performance
-var COMP_20um_spacing = COMP.sized(um10, 0, mode=2).sized(0, um10, mode=2).sized(-um10, 0, mode=2).sized(0, -um10, mode=2);
-
 # DPF.6abcd
 var Nwell_ring    = Nwell.sized(space_to_Nwell)       - Nwell.sized(-space_to_Nwell);
 var DNWELL_ring   = DNWELL.sized(space_to_DNWELL)     - DNWELL.sized(-space_to_DNWELL);
@@ -137,7 +134,7 @@ var Dualgate_ring = Dualgate.sized(space_to_Dualgate) - Dualgate.sized(-space_to
 var scribe_line_ring = _frame - _frame.sized(-space_to_scribe_line);
 
 var fill_region = _tile & _frame
-                  - COMP_20um_spacing.sized(space_to_COMP)
+                  - COMP.sized(space_to_COMP)
                   - Poly2.sized(space_to_Poly2)
                   - Poly2_Dummy.sized(space_to_Poly2_Dummy)
                   - Nwell_ring
