@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pya
+import klayout.db as db
 from .draw_sealring import draw_sealring, sealring_edge_width
 
 default_width = 100
@@ -22,7 +22,7 @@ minimum_width = 3 * sealring_edge_width
 minimum_height = 3 * sealring_edge_width
 
 
-class sealring(pya.PCellDeclarationHelper):
+class sealring(db.PCellDeclarationHelper):
     """
     Seal ring generator for GF180MCU
     """
@@ -69,17 +69,18 @@ class sealring(pya.PCellDeclarationHelper):
         self.perim = 2 * (self.w + self.h)
 
     def can_create_from_shape_impl(self):
-        # Any shape with a bounding box
-        return self.shape.is_box() or self.shape.is_polygon() or self.shape.is_path()
+        return self.shape.dpolygon is not None
 
     def parameters_from_shape_impl(self):
         # Get width and height
-        self.w = self.shape.dbbox().width()
-        self.h = self.shape.dbbox().height()
+        poly = self.shape.dpolygon
+        self.w = poly.bbox().width()
+        self.h = poly.bbox().height()
 
     def transformation_from_shape_impl(self):
-        # Get the bottom left corner
-        return pya.DTrans(self.shape.dbbox().left, self.shape.dbbox().bottom)
+        # Get the bottom left corner in DBU units
+        poly = self.shape.polygon
+        return db.Trans(poly.bbox().p1)
 
     def produce_impl(self):
         # Draw the sealring
@@ -88,8 +89,8 @@ class sealring(pya.PCellDeclarationHelper):
         )
 
         self.cell.insert(
-            pya.CellInstArray(
+            db.CellInstArray(
                 sealring_instance.cell_index(),
-                pya.Trans(pya.Point(0, 0)),
+                db.Trans(db.Point(0, 0)),
             )
         )

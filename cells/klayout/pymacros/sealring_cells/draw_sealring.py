@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pya
+import klayout.db as db
 from .layers import Layers
 
 sealring_edge_width = 16
@@ -59,165 +59,165 @@ corner_polygons = {
     "bonding": {
         # Pad (Passivation) opening
         Layers.Pad: [
-            pya.DPoint(3, 16),
-            pya.DPoint(12, 16),
-            pya.DPoint(16, 12),
-            pya.DPoint(16, 3),
+            db.DPoint(3, 16),
+            db.DPoint(12, 16),
+            db.DPoint(16, 12),
+            db.DPoint(16, 3),
             # Extend based on thickness
-            pya.DPoint(16 - 4, 3),
-            pya.DPoint(3, 16 - 4),
+            db.DPoint(16 - 4, 3),
+            db.DPoint(3, 16 - 4),
         ],
         Layers.COMP: [
-            pya.DPoint(0, 16),
-            pya.DPoint(16, 16),
-            pya.DPoint(16, 0),
+            db.DPoint(0, 16),
+            db.DPoint(16, 16),
+            db.DPoint(16, 0),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 0),
-            pya.DPoint(0, 16 - 7),
+            db.DPoint(16 - 7, 0),
+            db.DPoint(0, 16 - 7),
         ],
         Layers.Pplus: [
-            pya.DPoint(0, 16),
-            pya.DPoint(16, 16),
-            pya.DPoint(16, 0),
+            db.DPoint(0, 16),
+            db.DPoint(16, 16),
+            db.DPoint(16, 0),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 0),
-            pya.DPoint(0, 16 - 7),
+            db.DPoint(16 - 7, 0),
+            db.DPoint(0, 16 - 7),
         ],
         Layers.GUARD_RING_MK: [
-            pya.DPoint(0, 16),
-            pya.DPoint(16, 16),
-            pya.DPoint(16, 0),
+            db.DPoint(0, 16),
+            db.DPoint(16, 16),
+            db.DPoint(16, 0),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 0),
-            pya.DPoint(0, 16 - 7),
+            db.DPoint(16 - 7, 0),
+            db.DPoint(0, 16 - 7),
         ],
         Layers.Metal1: [
-            pya.DPoint(0, 16),
-            pya.DPoint(15, 16),
-            pya.DPoint(16, 15),
-            pya.DPoint(16, 0),
+            db.DPoint(0, 16),
+            db.DPoint(15, 16),
+            db.DPoint(16, 15),
+            db.DPoint(16, 0),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 0),
-            pya.DPoint(0, 16 - 7),
+            db.DPoint(16 - 7, 0),
+            db.DPoint(0, 16 - 7),
         ],
         Layers.Metal2: [
-            pya.DPoint(0, 16),
-            pya.DPoint(16, 16),
-            pya.DPoint(16, 0),
+            db.DPoint(0, 16),
+            db.DPoint(16, 16),
+            db.DPoint(16, 0),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 0),
-            pya.DPoint(0, 16 - 7),
+            db.DPoint(16 - 7, 0),
+            db.DPoint(0, 16 - 7),
         ],
         Layers.Metal3: [
-            pya.DPoint(0, 16),
-            pya.DPoint(15, 16),
-            pya.DPoint(16, 15),
-            pya.DPoint(16, 0),
+            db.DPoint(0, 16),
+            db.DPoint(15, 16),
+            db.DPoint(16, 15),
+            db.DPoint(16, 0),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 0),
-            pya.DPoint(0, 16 - 7),
+            db.DPoint(16 - 7, 0),
+            db.DPoint(0, 16 - 7),
         ],
         Layers.Metal4: [
-            pya.DPoint(0, 16),
-            pya.DPoint(16, 16),
-            pya.DPoint(16, 0),
+            db.DPoint(0, 16),
+            db.DPoint(16, 16),
+            db.DPoint(16, 0),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 0),
-            pya.DPoint(0, 16 - 7),
+            db.DPoint(16 - 7, 0),
+            db.DPoint(0, 16 - 7),
         ],
         Layers.Metal5: [
-            pya.DPoint(0, 16),
-            pya.DPoint(15, 16),
-            pya.DPoint(16, 15),
-            pya.DPoint(16, 0),
+            db.DPoint(0, 16),
+            db.DPoint(15, 16),
+            db.DPoint(16, 15),
+            db.DPoint(16, 0),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 0),
-            pya.DPoint(0, 16 - 7),
+            db.DPoint(16 - 7, 0),
+            db.DPoint(0, 16 - 7),
         ],
         Layers.MetalTop: [
-            pya.DPoint(0, 16),
-            pya.DPoint(16, 16),
-            pya.DPoint(16, 0),
+            db.DPoint(0, 16),
+            db.DPoint(16, 16),
+            db.DPoint(16, 0),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 0),
-            pya.DPoint(0, 16 - 7),
+            db.DPoint(16 - 7, 0),
+            db.DPoint(0, 16 - 7),
         ],
     },
     "flip-chip": {
         Layers.COMP: [
-            pya.DPoint(0, 16),
-            pya.DPoint(16, 16),
-            pya.DPoint(16, 0),
+            db.DPoint(0, 16),
+            db.DPoint(16, 16),
+            db.DPoint(16, 0),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 0),
-            pya.DPoint(0, 16 - 7),
+            db.DPoint(16 - 7, 0),
+            db.DPoint(0, 16 - 7),
         ],
         Layers.Pplus: [
-            pya.DPoint(0, 16),
-            pya.DPoint(16, 16),
-            pya.DPoint(16, 0),
+            db.DPoint(0, 16),
+            db.DPoint(16, 16),
+            db.DPoint(16, 0),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 0),
-            pya.DPoint(0, 16 - 7),
+            db.DPoint(16 - 7, 0),
+            db.DPoint(0, 16 - 7),
         ],
         Layers.GUARD_RING_MK: [
-            pya.DPoint(0, 16),
-            pya.DPoint(16, 16),
-            pya.DPoint(16, 0),
+            db.DPoint(0, 16),
+            db.DPoint(16, 16),
+            db.DPoint(16, 0),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 0),
-            pya.DPoint(0, 16 - 7),
+            db.DPoint(16 - 7, 0),
+            db.DPoint(0, 16 - 7),
         ],
         Layers.Metal1: [
-            pya.DPoint(3, 16),
-            pya.DPoint(15, 16),
-            pya.DPoint(16, 15),
-            pya.DPoint(16, 3),
+            db.DPoint(3, 16),
+            db.DPoint(15, 16),
+            db.DPoint(16, 15),
+            db.DPoint(16, 3),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 3),
-            pya.DPoint(3, 16 - 7),
+            db.DPoint(16 - 7, 3),
+            db.DPoint(3, 16 - 7),
         ],
         Layers.Metal2: [
-            pya.DPoint(3, 16),
-            pya.DPoint(16, 16),
-            pya.DPoint(16, 3),
+            db.DPoint(3, 16),
+            db.DPoint(16, 16),
+            db.DPoint(16, 3),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 3),
-            pya.DPoint(3, 16 - 7),
+            db.DPoint(16 - 7, 3),
+            db.DPoint(3, 16 - 7),
         ],
         Layers.Metal3: [
-            pya.DPoint(3, 16),
-            pya.DPoint(15, 16),
-            pya.DPoint(16, 15),
-            pya.DPoint(16, 3),
+            db.DPoint(3, 16),
+            db.DPoint(15, 16),
+            db.DPoint(16, 15),
+            db.DPoint(16, 3),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 3),
-            pya.DPoint(3, 16 - 7),
+            db.DPoint(16 - 7, 3),
+            db.DPoint(3, 16 - 7),
         ],
         Layers.Metal4: [
-            pya.DPoint(3, 16),
-            pya.DPoint(16, 16),
-            pya.DPoint(16, 3),
+            db.DPoint(3, 16),
+            db.DPoint(16, 16),
+            db.DPoint(16, 3),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 3),
-            pya.DPoint(3, 16 - 7),
+            db.DPoint(16 - 7, 3),
+            db.DPoint(3, 16 - 7),
         ],
         Layers.Metal5: [
-            pya.DPoint(3, 16),
-            pya.DPoint(15, 16),
-            pya.DPoint(16, 15),
-            pya.DPoint(16, 3),
+            db.DPoint(3, 16),
+            db.DPoint(15, 16),
+            db.DPoint(16, 15),
+            db.DPoint(16, 3),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 3),
-            pya.DPoint(3, 16 - 7),
+            db.DPoint(16 - 7, 3),
+            db.DPoint(3, 16 - 7),
         ],
         Layers.MetalTop: [
-            pya.DPoint(3, 16),
-            pya.DPoint(16, 16),
-            pya.DPoint(16, 3),
+            db.DPoint(3, 16),
+            db.DPoint(16, 16),
+            db.DPoint(16, 3),
             # Extend based on thickness
-            pya.DPoint(16 - 7, 3),
-            pya.DPoint(3, 16 - 7),
+            db.DPoint(16 - 7, 3),
+            db.DPoint(3, 16 - 7),
         ],
     },
 }
@@ -287,18 +287,18 @@ def draw_sealring(layout, w, h, metal_level, sealring_type="bonding"):
     )
 
     sealring_cell.insert(
-        pya.DCellInstArray(
+        db.DCellInstArray(
             sealring_vertical.cell_index(),
-            pya.DTrans(
-                pya.DTrans.M90, pya.DPoint(sealring_edge_width, sealring_edge_width)
+            db.DTrans(
+                db.DTrans.M90, db.DPoint(sealring_edge_width, sealring_edge_width)
             ),
         )
     )
 
     sealring_cell.insert(
-        pya.DCellInstArray(
+        db.DCellInstArray(
             sealring_vertical.cell_index(),
-            pya.DTrans(pya.DPoint(w - sealring_edge_width, sealring_edge_width)),
+            db.DTrans(db.DPoint(w - sealring_edge_width, sealring_edge_width)),
         )
     )
 
@@ -308,20 +308,20 @@ def draw_sealring(layout, w, h, metal_level, sealring_type="bonding"):
     )
 
     sealring_cell.insert(
-        pya.DCellInstArray(
+        db.DCellInstArray(
             sealring_horizontal.cell_index(),
-            pya.DTrans(
-                pya.DTrans.R90,
-                pya.DPoint(w - sealring_edge_width, h - sealring_edge_width),
+            db.DTrans(
+                db.DTrans.R90,
+                db.DPoint(w - sealring_edge_width, h - sealring_edge_width),
             ),
         )
     )
 
     sealring_cell.insert(
-        pya.DCellInstArray(
+        db.DCellInstArray(
             sealring_horizontal.cell_index(),
-            pya.DTrans(
-                pya.DTrans.R270, pya.DPoint(sealring_edge_width, sealring_edge_width)
+            db.DTrans(
+                db.DTrans.R270, db.DPoint(sealring_edge_width, sealring_edge_width)
             ),
         )
     )
@@ -331,39 +331,39 @@ def draw_sealring(layout, w, h, metal_level, sealring_type="bonding"):
 
     # Bottom-left
     sealring_cell.insert(
-        pya.DCellInstArray(
+        db.DCellInstArray(
             sealring_corner.cell_index(),
-            pya.DTrans(pya.DPoint(0, 0)),
+            db.DTrans(db.DPoint(0, 0)),
         )
     )
 
     # Top-left
     sealring_cell.insert(
-        pya.DCellInstArray(
+        db.DCellInstArray(
             sealring_corner.cell_index(),
-            pya.DTrans(pya.DTrans.R270, pya.DPoint(0, h)),
+            db.DTrans(db.DTrans.R270, db.DPoint(0, h)),
         )
     )
 
     # Top-right
     sealring_cell.insert(
-        pya.DCellInstArray(
+        db.DCellInstArray(
             sealring_corner.cell_index(),
-            pya.DTrans(pya.DTrans.R180, pya.DPoint(w, h)),
+            db.DTrans(db.DTrans.R180, db.DPoint(w, h)),
         )
     )
 
     # Bottom-right
     sealring_cell.insert(
-        pya.DCellInstArray(
+        db.DCellInstArray(
             sealring_corner.cell_index(),
-            pya.DTrans(pya.DTrans.R90, pya.DPoint(w, 0)),
+            db.DTrans(db.DTrans.R90, db.DPoint(w, 0)),
         )
     )
 
     # Flatten the cell and merge GUARD_RING_MK polygons
     sealring_cell.flatten(0)
-    region = pya.Region(
+    region = db.Region(
         sealring_cell.begin_shapes_rec(layout.layer(Layers.GUARD_RING_MK))
     )
     region.merge()
@@ -398,7 +398,7 @@ def draw_sealring_edge(layout, h, metal_level, sealring_type="bonding"):
     # Draw the solid layers
     for cur_dict in solid_layers_table[sealring_type]:
         layer, start, end = cur_dict.values()
-        sealring_edge_cell.shapes(layer).insert(pya.DBox.new(start, 0, end, h))
+        sealring_edge_cell.shapes(layer).insert(db.DBox.new(start, 0, end, h))
 
         if layer == max_metal:
             break
@@ -408,17 +408,17 @@ def draw_sealring_edge(layout, h, metal_level, sealring_type="bonding"):
 
         layer, start, size, distance, distance2, stagger = cur_dict.values()
         contact_vias_cell = layout.cell(layout.add_cell("cont_via"))
-        contact_vias_cell.shapes(layer).insert(pya.DBox.new(0, 0, size, size))
+        contact_vias_cell.shapes(layer).insert(db.DBox.new(0, 0, size, size))
 
         for i in range(
             int((vias_edge_width[sealring_type] - start - size) / (size + distance)) + 1
         ):
             sealring_edge_cell.insert(
-                pya.DCellInstArray(
+                db.DCellInstArray(
                     contact_vias_cell.cell_index(),
-                    pya.DPoint(start + i * distance, i * stagger),
-                    pya.DVector(0, 0),
-                    pya.DVector(0, distance2 + size),
+                    db.DPoint(start + i * distance, i * stagger),
+                    db.DVector(0, 0),
+                    db.DVector(0, distance2 + size),
                     0,
                     (h - i * stagger) / (distance2 + size),
                 )
@@ -446,7 +446,7 @@ def draw_sealring_corner(layout, metal_level, sealring_type="bonding"):
 
     # Draw the polygon for each layer
     for layer, points in corner_polygons[sealring_type].items():
-        sealring_corner_cell.shapes(layer).insert(pya.DPolygon(points))
+        sealring_corner_cell.shapes(layer).insert(db.DPolygon(points))
 
         if layer == max_metal:
             break

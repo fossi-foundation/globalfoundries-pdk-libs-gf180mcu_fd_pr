@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pya
+import klayout.db as db
 
 
 class Layers:
@@ -20,35 +20,35 @@ class Layers:
     def by_name(name):
         return Layers.__dict__[name]
 
-    COMP = pya.LayerInfo(22, 0)
-    Pplus = pya.LayerInfo(31, 0)
-    Nplus = pya.LayerInfo(32, 0)
-    DNWELL = pya.LayerInfo(12, 0)
-    Nwell = pya.LayerInfo(21, 0)
-    LVPWELL = pya.LayerInfo(204, 0)
-    Dualgate = pya.LayerInfo(55, 0)
-    Poly2 = pya.LayerInfo(30, 0)
-    Nplus = pya.LayerInfo(32, 0)
-    Pplus = pya.LayerInfo(31, 0)
-    SAB = pya.LayerInfo(49, 0)
-    ESD = pya.LayerInfo(24, 0)
+    COMP = db.LayerInfo(22, 0)
+    Pplus = db.LayerInfo(31, 0)
+    Nplus = db.LayerInfo(32, 0)
+    DNWELL = db.LayerInfo(12, 0)
+    Nwell = db.LayerInfo(21, 0)
+    LVPWELL = db.LayerInfo(204, 0)
+    Dualgate = db.LayerInfo(55, 0)
+    Poly2 = db.LayerInfo(30, 0)
+    Nplus = db.LayerInfo(32, 0)
+    Pplus = db.LayerInfo(31, 0)
+    SAB = db.LayerInfo(49, 0)
+    ESD = db.LayerInfo(24, 0)
 
-    Metal1 = pya.LayerInfo(34, 0)
-    Metal2 = pya.LayerInfo(36, 0)
-    Metal3 = pya.LayerInfo(42, 0)
-    Metal4 = pya.LayerInfo(46, 0)
-    Metal5 = pya.LayerInfo(81, 0)
-    MetalTop = pya.LayerInfo(53, 0)
+    Metal1 = db.LayerInfo(34, 0)
+    Metal2 = db.LayerInfo(36, 0)
+    Metal3 = db.LayerInfo(42, 0)
+    Metal4 = db.LayerInfo(46, 0)
+    Metal5 = db.LayerInfo(81, 0)
+    MetalTop = db.LayerInfo(53, 0)
 
-    Contact = pya.LayerInfo(33, 0)
-    Via1 = pya.LayerInfo(35, 0)
-    Via2 = pya.LayerInfo(38, 0)
-    Via3 = pya.LayerInfo(40, 0)
-    Via4 = pya.LayerInfo(41, 0)
-    Via5 = pya.LayerInfo(82, 0)
+    Contact = db.LayerInfo(33, 0)
+    Via1 = db.LayerInfo(35, 0)
+    Via2 = db.LayerInfo(38, 0)
+    Via3 = db.LayerInfo(40, 0)
+    Via4 = db.LayerInfo(41, 0)
+    Via5 = db.LayerInfo(82, 0)
 
-    PR_bndry = pya.LayerInfo(0, 0)
+    PR_bndry = db.LayerInfo(0, 0)
 
-    GUARD_RING_MK = pya.LayerInfo(167, 5)
+    GUARD_RING_MK = db.LayerInfo(167, 5)
 
-    Pad = pya.LayerInfo(37, 0)
+    Pad = db.LayerInfo(37, 0)
