@@ -107,10 +107,6 @@ tp.output("to_fill", TilingOperator::new($ly, $fill_cell_comp, fill_cell.cell_in
 # (see https://www.klayout.de/doc-qt4/about/expressions.html)
 tp.queue("
 
-# DCF.1a - use octagon_limit for sizing, do multiple steps for better performance
-# TODO: do we actually need to keep 20um area empty? 'must be filled'
-var COMP_20um_spacing = COMP.sized(um10, 0, mode=2).sized(0, um10, mode=2).sized(-um10, 0, mode=2).sized(0, -um10, mode=2);
-
 # DCF.6abcd
 var Nwell_ring    = Nwell.sized(space_to_Nwell)       - Nwell.sized(-space_to_Nwell);
 var DNWELL_ring   = DNWELL.sized(space_to_DNWELL)     - DNWELL.sized(-space_to_DNWELL);
@@ -123,7 +119,7 @@ var scribe_line_ring = _frame - _frame.sized(-space_to_scribe_line);
 
 var fill_region = _tile & _frame
                   - _tile.not(_tile.sized(-Poly2_extension))
-                  - COMP_20um_spacing.sized(space_to_COMP)
+                  - COMP.sized(space_to_COMP)
                   - COMP_Dummy.sized(space_to_COMP_Dummy)
                   - Poly2.sized(space_to_Poly2)
                   - Nwell_ring
