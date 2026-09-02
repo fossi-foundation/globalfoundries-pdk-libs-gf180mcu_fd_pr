@@ -18,12 +18,9 @@ fill_shape = RBA::DBox::new(-2.5, -2.5, 2.5, 2.5)
 fill_layer = COMP_Dummy
 fc_name = "COMP_fill_cell"
 
-fill_cell = $ly.cell(fc_name)
-if ! fill_cell
-  fill_cell = $ly.create_cell(fc_name)
-  fill_shape_in_dbu = $micron2dbu * fill_shape
-  fill_cell.shapes(fill_layer).insert(fill_shape_in_dbu)
-end
+fill_cell = $ly.create_cell(fc_name)
+fill_shape_in_dbu = $micron2dbu * fill_shape
+fill_cell.shapes(fill_layer).insert(fill_shape_in_dbu)
 
 fc_box_in_dbu = $micron2dbu * fc_box
 fc_origin_in_dbu = $micron2dbu * fc_origin
