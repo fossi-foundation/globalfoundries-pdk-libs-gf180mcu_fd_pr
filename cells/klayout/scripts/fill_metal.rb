@@ -168,7 +168,16 @@ for metal in do_layers
   tp.var("space_to_MTPMK",        6.0 / $ly.dbu)
   tp.var("space_to_OTP_MK",       6.0 / $ly.dbu)
   
-  tp.var("space_to_scribe_line", 26 / $ly.dbu)
+  # Check no_scribe_line argument
+  no_scribe_line = defined?($no_scribe_line) && $no_scribe_line == "true"
+
+  if no_scribe_line
+    # Skip scribe line margin spacing
+    tp.var("space_to_scribe_line", 0 / $ly.dbu)
+  else
+    # Default scribe margin
+    tp.var("space_to_scribe_line", 26 / $ly.dbu)
+  end
   
   tp.var("um1", 1 / $ly.dbu)
   tp.var("um2", 2 / $ly.dbu)
