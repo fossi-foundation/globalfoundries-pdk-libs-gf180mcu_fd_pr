@@ -83,7 +83,16 @@ tp.var("space_to_Dualgate", 1 / $ly.dbu)
 # DPF.7 specifies a minimum distance of 25.7 from dummy poly to the scribe line
 # GR.2 specifies a minimum distance of 10 from GUARD_RING_MK to prime die
 # Therefore, if GUARD_RING_MK is directly next to the scribe line, DPF.7 should actually be 26
-tp.var("space_to_scribe_line", 26 / $ly.dbu)
+# Check no_scribe_line argument
+no_scribe_line = defined?($no_scribe_line) && $no_scribe_line == "true"
+
+if no_scribe_line
+  # Skip scribe line margin spacing
+  tp.var("space_to_scribe_line", 0 / $ly.dbu)
+else
+  # Default scribe margin
+  tp.var("space_to_scribe_line", 26 / $ly.dbu)
+end
 
 # DPF.8
 tp.var("space_to_RES_MK", 19.7 / $ly.dbu)

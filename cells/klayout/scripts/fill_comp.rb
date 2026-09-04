@@ -79,7 +79,16 @@ tp.var("space_to_LVPWELL", 1.3 / $ly.dbu)
 tp.var("space_to_Dualgate", 1.3 / $ly.dbu)
 
 # DCF.7a
-tp.var("space_to_scribe_line", 26 / $ly.dbu)
+# Check no_scribe_line argument
+no_scribe_line = defined?($no_scribe_line) && $no_scribe_line == "true"
+
+if no_scribe_line
+  # Skip scribe line margin spacing
+  tp.var("space_to_scribe_line", 0 / $ly.dbu)
+else
+  # Default scribe margin
+  tp.var("space_to_scribe_line", 26 / $ly.dbu)
+end
 
 # DCF.8a
 tp.var("space_to_RES_MK", 3.5 / $ly.dbu)
