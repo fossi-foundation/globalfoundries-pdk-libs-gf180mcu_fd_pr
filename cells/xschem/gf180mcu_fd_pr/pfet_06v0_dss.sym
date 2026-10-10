@@ -22,7 +22,7 @@ format="@spiceprefix@name @pinlist @model L=@L W=@W
 + nrd=@nrd nrs=@nrs sa=@sa sb=@sb sd=@sd
 + d_sab=@d_sab s_sab=@s_sab
 + m=@m"
-lvs_format="@name @pinlist @model L=@L W=@W nf=@nf m=@m"
+lvs_format="@name @pinlist @model L=@L W=@W nf=@nf m=@m par=@m"
 template="name=M1
 L=0.50u
 W=0.30u
