@@ -17,7 +17,7 @@ v {xschem version=3.4.5 file_version=1.2
 }
 G {}
 K {type=vertical_pnp
-format="@spiceprefix@name @pinlist @model m=@m"
+format="@spiceprefix@name @pinlist @model m=@m par=@m"
 template="name=Q1
 model=pnp_05p00x00p42
 spiceprefix=X
