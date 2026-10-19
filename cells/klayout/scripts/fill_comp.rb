@@ -93,8 +93,8 @@ end
 # DCF.8a
 tp.var("space_to_RES_MK", 3.5 / $ly.dbu)
 
-# DCF.9
-tp.var("space_to_Pad", 7 / $ly.dbu)
+# DCF.9 (guideline for RF circuits, actual 7um, chosen 5um)
+tp.var("space_to_Pad", 5 / $ly.dbu)
 
 # DCF.11a
 tp.var("space_to_NDMY", 3.5 / $ly.dbu)
