@@ -15,23 +15,6 @@
 # The top directory where environment will be created.
 TOP_DIR := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 
-
-################################################################################
-##  CLONING PV REPO
-################################################################################
-
-DRC-PV:
-	@rm -rf globalfoundries-pdk-libs-gf180mcu_fd_pv/ && git clone https://github.com/efabless/globalfoundries-pdk-libs-gf180mcu_fd_pv.git
-	@pip install --break-system-packages -r requirements.txt
-	@wget https://www.klayout.org/downloads/Ubuntu-24/klayout_0.30.2-1_amd64.deb
-	@sudo apt update
-	@sudo apt install -f ./klayout_0.30.2-1_amd64.deb
-
-NG_ENV:
-	@pip install --break-system-packages -r requirements.txt
-	@sudo apt update
-	@sudo apt install -y ngspice
-
 ################################################################################
 ## Code linting
 ################################################################################
@@ -43,44 +26,44 @@ lint-python:
 ## ngspice Regression section
 ################################################################################
 # ngspice models regression
-test-ngspice-%: NG_ENV
+test-ngspice-%:
 	cd models/ngspice/testing/regression/$*/ && python3 models_regression.py
 
 ################################################################################
 ## PCells Regression section
 ################################################################################
 # fet main testing
-test-nfet_03v3-pcells: DRC-PV
+test-nfet_03v3-pcells:
 	cd cells/klayout/pymacros/testing/ && make test-nfet_03v3
 
-test-nfet_05v0-pcells: DRC-PV
+test-nfet_05v0-pcells:
 	cd cells/klayout/pymacros/testing/ && make test-nfet_05v0
 
-test-nfet_06v0-pcells: DRC-PV
+test-nfet_06v0-pcells:
 	cd cells/klayout/pymacros/testing/ && make test-nfet_06v0
 
-test-pfet_03v3-pcells: DRC-PV
+test-pfet_03v3-pcells:
 	cd cells/klayout/pymacros/testing/ && make test-pfet_03v3
 
-test-pfet_05v0-pcells: DRC-PV
+test-pfet_05v0-pcells:
 	cd cells/klayout/pymacros/testing/ && make test-pfet_05v0
 
-test-pfet_06v0-pcells: DRC-PV
+test-pfet_06v0-pcells:
 	cd cells/klayout/pymacros/testing/ && make test-pfet_06v0
 
 # diode main testing
-test-diode-pcells: DRC-PV
+test-diode-pcells:
 	cd cells/klayout/pymacros/testing/ && make test-diode
 
 # moscap main testing
-test-moscap-pcells: DRC-PV
+test-moscap-pcells:
 	cd cells/klayout/pymacros/testing/ && make test-cap_mos
 
 # mimcap main testing
-test-mimcap-pcells: DRC-PV
+test-mimcap-pcells:
 	cd cells/klayout/pymacros/testing/ &&  make test-MIM
 
 # res main testing
-test-res-pcells: DRC-PV
+test-res-pcells:
 	cd cells/klayout/pymacros/testing/ && make test-RES 
 

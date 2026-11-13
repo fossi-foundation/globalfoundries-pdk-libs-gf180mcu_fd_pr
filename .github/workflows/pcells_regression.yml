@@ -20,122 +20,299 @@ on:
   workflow_dispatch:
 
 jobs:
+  setup_klayout:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: 💾 Restore KLayout .deb from cache
+        id: cache-klayout
+        uses: actions/cache@v5
+        with:
+          path: klayout_0.30.12-1_amd64.deb
+          key: klayout-deb-cache-ubuntu-0.30.12
+
+      - name: Download KLayout .deb if not cached
+        if: steps.cache-klayout.outputs.cache-hit != 'true'
+        run: |
+          curl -L --retry 5 --retry-delay 5 --retry-all-errors \
+            -o klayout_0.30.12-1_amd64.deb \
+            https://www.klayout.org/downloads/Ubuntu-24/klayout_0.30.12-1_amd64.deb
+
   nfet_03v3_pcells_testing:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       max-parallel: 12
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
+
+      - name: Restore KLayout .deb from cache
+        uses: actions/cache@v5
+        with:
+          path: klayout_0.30.12-1_amd64.deb
+          key: klayout-deb-cache-ubuntu-0.30.12
+
+      - name: Install KLayout
+        run: sudo apt-get update && sudo apt-get install ./klayout_0.30.12-1_amd64.deb
+
+      - name: Clone PV Repository
+        run: rm -rf globalfoundries-pdk-libs-gf180mcu_fd_pv/ && git clone https://github.com/efabless/globalfoundries-pdk-libs-gf180mcu_fd_pv.git
+
+      - name: Install Python packages
+        run: pip install --break-system-packages -r requirements.txt
+
       - name: nfet_03v3 pcells regression
         run: |
           make test-nfet_03v3-pcells
 
   nfet_05v0_pcells_testing:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       max-parallel: 12
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
+
+      - name: Restore KLayout .deb from cache
+        uses: actions/cache@v5
+        with:
+          path: klayout_0.30.12-1_amd64.deb
+          key: klayout-deb-cache-ubuntu-0.30.12
+
+      - name: Install KLayout
+        run: sudo apt-get update && sudo apt-get install ./klayout_0.30.12-1_amd64.deb
+
+      - name: Clone PV Repository
+        run: rm -rf globalfoundries-pdk-libs-gf180mcu_fd_pv/ && git clone https://github.com/efabless/globalfoundries-pdk-libs-gf180mcu_fd_pv.git
+
+      - name: Install Python packages
+        run: pip install --break-system-packages -r requirements.txt
+
       - name: nfet_05v0 pcells regression
         run: |
           make test-nfet_05v0-pcells
 
   nfet_06v0_pcells_testing:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       max-parallel: 12
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
+
+      - name: Restore KLayout .deb from cache
+        uses: actions/cache@v5
+        with:
+          path: klayout_0.30.12-1_amd64.deb
+          key: klayout-deb-cache-ubuntu-0.30.12
+
+      - name: Install KLayout
+        run: sudo apt-get update && sudo apt-get install ./klayout_0.30.12-1_amd64.deb
+
+      - name: Clone PV Repository
+        run: rm -rf globalfoundries-pdk-libs-gf180mcu_fd_pv/ && git clone https://github.com/efabless/globalfoundries-pdk-libs-gf180mcu_fd_pv.git
+
+      - name: Install Python packages
+        run: pip install --break-system-packages -r requirements.txt
+
       - name: nfet_06v0 pcells regression
         run: |
           make test-nfet_06v0-pcells
 
   pfet_03v3_pcells_testing:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       max-parallel: 12
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
+
+      - name: Restore KLayout .deb from cache
+        uses: actions/cache@v5
+        with:
+          path: klayout_0.30.12-1_amd64.deb
+          key: klayout-deb-cache-ubuntu-0.30.12
+
+      - name: Install KLayout
+        run: sudo apt-get update && sudo apt-get install ./klayout_0.30.12-1_amd64.deb
+
+      - name: Clone PV Repository
+        run: rm -rf globalfoundries-pdk-libs-gf180mcu_fd_pv/ && git clone https://github.com/efabless/globalfoundries-pdk-libs-gf180mcu_fd_pv.git
+
+      - name: Install Python packages
+        run: pip install --break-system-packages -r requirements.txt
+
       - name: pfet_03v3 pcells regression
         run: |
           make test-pfet_03v3-pcells
 
   pfet_05v0_pcells_testing:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       max-parallel: 12
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
+
+      - name: Restore KLayout .deb from cache
+        uses: actions/cache@v5
+        with:
+          path: klayout_0.30.12-1_amd64.deb
+          key: klayout-deb-cache-ubuntu-0.30.12
+
+      - name: Install KLayout
+        run: sudo apt-get update && sudo apt-get install ./klayout_0.30.12-1_amd64.deb
+
+      - name: Clone PV Repository
+        run: rm -rf globalfoundries-pdk-libs-gf180mcu_fd_pv/ && git clone https://github.com/efabless/globalfoundries-pdk-libs-gf180mcu_fd_pv.git
+
+      - name: Install Python packages
+        run: pip install --break-system-packages -r requirements.txt
+
       - name: pfet_05v0 pcells regression
         run: |
           make test-pfet_05v0-pcells
 
   pfet_06v0_pcells_testing:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       max-parallel: 12
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
+
+      - name: Restore KLayout .deb from cache
+        uses: actions/cache@v5
+        with:
+          path: klayout_0.30.12-1_amd64.deb
+          key: klayout-deb-cache-ubuntu-0.30.12
+
+      - name: Install KLayout
+        run: sudo apt-get update && sudo apt-get install ./klayout_0.30.12-1_amd64.deb
+
+      - name: Clone PV Repository
+        run: rm -rf globalfoundries-pdk-libs-gf180mcu_fd_pv/ && git clone https://github.com/efabless/globalfoundries-pdk-libs-gf180mcu_fd_pv.git
+
+      - name: Install Python packages
+        run: pip install --break-system-packages -r requirements.txt
+
       - name: pfet_06v0 pcells regression
         run: |
           make test-pfet_06v0-pcells
 
   diode_pcells_testing:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       max-parallel: 12
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
+
+      - name: Restore KLayout .deb from cache
+        uses: actions/cache@v5
+        with:
+          path: klayout_0.30.12-1_amd64.deb
+          key: klayout-deb-cache-ubuntu-0.30.12
+
+      - name: Install KLayout
+        run: sudo apt-get update && sudo apt-get install ./klayout_0.30.12-1_amd64.deb
+
+      - name: Clone PV Repository
+        run: rm -rf globalfoundries-pdk-libs-gf180mcu_fd_pv/ && git clone https://github.com/efabless/globalfoundries-pdk-libs-gf180mcu_fd_pv.git
+
+      - name: Install Python packages
+        run: pip install --break-system-packages -r requirements.txt
+
       - name: diode pcells regression
         run: |
           make test-diode-pcells
 
   mimcap_pcells_testing:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       max-parallel: 12
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
+
+      - name: Restore KLayout .deb from cache
+        uses: actions/cache@v5
+        with:
+          path: klayout_0.30.12-1_amd64.deb
+          key: klayout-deb-cache-ubuntu-0.30.12
+
+      - name: Install KLayout
+        run: sudo apt-get update && sudo apt-get install ./klayout_0.30.12-1_amd64.deb
+
+      - name: Clone PV Repository
+        run: rm -rf globalfoundries-pdk-libs-gf180mcu_fd_pv/ && git clone https://github.com/efabless/globalfoundries-pdk-libs-gf180mcu_fd_pv.git
+
+      - name: Install Python packages
+        run: pip install --break-system-packages -r requirements.txt
+
       - name: mimcap pcells regression
         run: |
           make test-mimcap-pcells
 
   moscap_pcells_testing:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       max-parallel: 12
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
+
+      - name: Restore KLayout .deb from cache
+        uses: actions/cache@v5
+        with:
+          path: klayout_0.30.12-1_amd64.deb
+          key: klayout-deb-cache-ubuntu-0.30.12
+
+      - name: Install KLayout
+        run: sudo apt-get update && sudo apt-get install ./klayout_0.30.12-1_amd64.deb
+
+      - name: Clone PV Repository
+        run: rm -rf globalfoundries-pdk-libs-gf180mcu_fd_pv/ && git clone https://github.com/efabless/globalfoundries-pdk-libs-gf180mcu_fd_pv.git
+
+      - name: Install Python packages
+        run: pip install --break-system-packages -r requirements.txt
+
       - name: moscap pcells regression
         run: |
           make test-moscap-pcells
 
   res_pcells_testing:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       max-parallel: 12
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
+
+      - name: Restore KLayout .deb from cache
+        uses: actions/cache@v5
+        with:
+          path: klayout_0.30.12-1_amd64.deb
+          key: klayout-deb-cache-ubuntu-0.30.12
+
+      - name: Install KLayout
+        run: sudo apt-get update && sudo apt-get install ./klayout_0.30.12-1_amd64.deb
+
+      - name: Clone PV Repository
+        run: rm -rf globalfoundries-pdk-libs-gf180mcu_fd_pv/ && git clone https://github.com/efabless/globalfoundries-pdk-libs-gf180mcu_fd_pv.git
+
+      - name: Install Python packages
+        run: pip install --break-system-packages -r requirements.txt
+
       - name: res pcells regression
         run: |
           make test-res-pcells
