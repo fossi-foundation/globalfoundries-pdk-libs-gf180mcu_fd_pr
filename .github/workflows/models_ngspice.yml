@@ -52,5 +52,11 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Install Python packages
+        run: pip install --break-system-packages -r requirements.txt
+
+      - name: Install ngspice
+        run: sudo apt update && sudo apt install ngspice
+
       - name: Run ngspice regression
         run: make test-ngspice-${{ matrix.device }}
