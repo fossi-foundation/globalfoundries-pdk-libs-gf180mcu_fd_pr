@@ -46,6 +46,7 @@ tp.tile_size(tile_size, tile_size)
 tp.tile_border(30, 30)
 
 tp.input("COMP", $ly, $top_cell.cell_index, COMP)
+tp.input("COMP_Dummy", $ly, $top_cell.cell_index, COMP_Dummy)
 tp.input("Poly2", $ly, $top_cell.cell_index, Poly2)
 tp.input("Poly2_Dummy", $ly, $top_cell.cell_index, Poly2_Dummy)
 tp.input("NDMY", $ly, $top_cell.cell_index, NDMY)
@@ -65,6 +66,10 @@ tp.input("Metal1", $ly, $top_cell.cell_index, Metal1)
 tp.input("Metal2", $ly, $top_cell.cell_index, Metal2)
 
 tp.var("line_space", line_space / $ly.dbu)
+
+# ensure we dont place Poly2_Dummy over existing COMP_Dummy
+# (macro could be prefilled and the grids may not be aligned)
+tp.var("space_to_COMP_Dummy", (line_space + 0.3) / $ly.dbu)
 
 # DPF.2a
 tp.var("space_to_Poly2_Dummy", line_space / $ly.dbu)
@@ -141,6 +146,7 @@ var scribe_line_ring = _frame - _frame.sized(-space_to_scribe_line);
 
 var fill_region = _tile & _frame
                   - COMP.sized(space_to_COMP)
+                  - COMP_Dummy.sized(space_to_COMP_Dummy)
                   - Poly2.sized(space_to_Poly2)
                   - Poly2_Dummy.sized(space_to_Poly2_Dummy)
                   - Nwell_ring

@@ -93,11 +93,11 @@ end
 
 # I know, this is not the cleanest way to include scripts...
 
-puts "Starting COMP fill…"
-require_relative 'fill_comp.rb'
-
 puts "Starting Poly2 fill…"
 require_relative 'fill_poly2.rb'
+
+puts "Starting COMP fill…"
+require_relative 'fill_comp.rb'
 
 puts "Starting Metal fill…"
 require_relative 'fill_metal.rb'
