@@ -25,7 +25,7 @@ on:
 
 jobs:
   build_ngspice-matrix:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       ngspice_devices: ${{ steps.set-matrix.outputs.ngspice_devices }}
     steps:
@@ -40,7 +40,7 @@ jobs:
 
   models-ngspice:
     needs: build_ngspice-matrix
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
