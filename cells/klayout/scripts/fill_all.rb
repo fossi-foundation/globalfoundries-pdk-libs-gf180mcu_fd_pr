@@ -55,6 +55,7 @@ $chip = $ly.top_cell().dbbox()
 if not $threads
   $threads ||= Etc.nprocessors
 end
+$threads = Integer($threads)
 
 $fill_cell_comp =	 $ly.create_cell("COMP_FILL")
 $fill_cell_poly2 =	 $ly.create_cell("POLY2_FILL")
