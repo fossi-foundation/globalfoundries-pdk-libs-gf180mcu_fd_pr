@@ -39,6 +39,7 @@ jobs:
 
   nfet_03v3_pcells_testing:
     runs-on: ubuntu-24.04
+    needs: [setup_klayout]
     strategy:
       max-parallel: 12
     steps:
@@ -67,6 +68,7 @@ jobs:
 
   nfet_05v0_pcells_testing:
     runs-on: ubuntu-24.04
+    needs: [setup_klayout]
     strategy:
       max-parallel: 12
     steps:
@@ -95,6 +97,7 @@ jobs:
 
   nfet_06v0_pcells_testing:
     runs-on: ubuntu-24.04
+    needs: [setup_klayout]
     strategy:
       max-parallel: 12
     steps:
@@ -123,6 +126,7 @@ jobs:
 
   pfet_03v3_pcells_testing:
     runs-on: ubuntu-24.04
+    needs: [setup_klayout]
     strategy:
       max-parallel: 12
     steps:
@@ -151,6 +155,7 @@ jobs:
 
   pfet_05v0_pcells_testing:
     runs-on: ubuntu-24.04
+    needs: [setup_klayout]
     strategy:
       max-parallel: 12
     steps:
@@ -179,6 +184,7 @@ jobs:
 
   pfet_06v0_pcells_testing:
     runs-on: ubuntu-24.04
+    needs: [setup_klayout]
     strategy:
       max-parallel: 12
     steps:
@@ -207,6 +213,7 @@ jobs:
 
   diode_pcells_testing:
     runs-on: ubuntu-24.04
+    needs: [setup_klayout]
     strategy:
       max-parallel: 12
     steps:
@@ -235,6 +242,7 @@ jobs:
 
   mimcap_pcells_testing:
     runs-on: ubuntu-24.04
+    needs: [setup_klayout]
     strategy:
       max-parallel: 12
     steps:
@@ -263,6 +271,7 @@ jobs:
 
   moscap_pcells_testing:
     runs-on: ubuntu-24.04
+    needs: [setup_klayout]
     strategy:
       max-parallel: 12
     steps:
@@ -291,6 +300,7 @@ jobs:
 
   res_pcells_testing:
     runs-on: ubuntu-24.04
+    needs: [setup_klayout]
     strategy:
       max-parallel: 12
     steps:
