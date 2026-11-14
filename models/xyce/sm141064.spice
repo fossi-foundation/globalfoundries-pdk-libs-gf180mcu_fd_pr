@@ -38623,56 +38623,56 @@ r_leak 1 2 r='1/(gleak*c_area)' tc1='c_tc1' tc2='c_tc2'
 .param cvar2=0.00198
 .param cvar3=6.25
 .param cvar4=-3.9375
-c_moscap 1 2 c='cap_nmos_03v3_corner*l*w*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
+c_moscap 1 2 c='cap_nmos_03v3_corner*c_length*c_width*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
 .ends cap_nmos_03v3
 .subckt cap_pmos_03v3 1 2 c_length='l' c_width='w' dtemp=0
 .param cvar1=0.001998
 .param cvar2=0.00196
 .param cvar3=-6.25
 .param cvar4=-4.9375
-c_moscap 1 2 c='cap_pmos_03v3_corner*l*w*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
+c_moscap 1 2 c='cap_pmos_03v3_corner*c_length*c_width*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
 .ends cap_pmos_03v3
 .subckt cap_nmos_06v0 1 2 c_length='l' c_width='w' dtemp=0
 .param cvar1=0.001107
 .param cvar2=0.00107
 .param cvar3=6.25
 .param cvar4=-4.1875
-c_moscap 1 2 c='cap_nmos_06v0_corner*l*w*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
+c_moscap 1 2 c='cap_nmos_06v0_corner*c_length*c_width*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
 .ends cap_nmos_06v0
 .subckt cap_pmos_06v0 1 2 c_length='l' c_width='w' dtemp=0
 .param cvar1=0.001107
 .param cvar2=0.00107
 .param cvar3=-6.25
 .param cvar4=-5.75
-c_moscap 1 2 c='cap_pmos_06v0_corner*l*w*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
+c_moscap 1 2 c='cap_pmos_06v0_corner*c_length*c_width*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
 .ends cap_pmos_06v0
 .subckt cap_nmos_03v3_b 1 2 c_length='l' c_width='w' dtemp=0
 .param cvar1=0.002458
 .param cvar2=0.001533
 .param cvar3=1.515152
 .param cvar4=0.560606
-c_moscap 1 2 c='cap_nmos_03v3_b_corner*l*w*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
+c_moscap 1 2 c='cap_nmos_03v3_b_corner*c_length*c_width*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
 .ends cap_nmos_03v3_b
 .subckt cap_pmos_03v3_b 1 2 c_length='l' c_width='w' dtemp=0
 .param cvar1=0.002435
 .param cvar2=0.00154
 .param cvar3=-1.66667
 .param cvar4=0.65
-c_moscap 1 2 c='cap_pmos_03v3_b_corner*l*w*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
+c_moscap 1 2 c='cap_pmos_03v3_b_corner*c_length*c_width*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
 .ends cap_pmos_03v3_b
 .subckt cap_nmos_06v0_b 1 2 c_length='l' c_width='w' dtemp=0
 .param cvar1=0.001293
 .param cvar2=0.000863
 .param cvar3=1.052632
 .param cvar4=0.736842
-c_moscap 1 2 c='cap_nmos_06v0_b_corner*l*w*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
+c_moscap 1 2 c='cap_nmos_06v0_b_corner*c_length*c_width*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
 .ends cap_nmos_06v0_b
 .subckt cap_pmos_06v0_b 1 2 c_length='l' c_width='w' dtemp=0
 .param cvar1=0.001325
 .param cvar2=0.000865
 .param cvar3=-1.42857
 .param cvar4=0.642857
-c_moscap 1 2 c='cap_pmos_06v0_b_corner*l*w*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
+c_moscap 1 2 c='cap_pmos_06v0_b_corner*c_length*c_width*(cvar1+cvar2*tanh(cvar3*v(1,2)+cvar4))'
 .ends cap_pmos_06v0_b
 .endl moscap
 
