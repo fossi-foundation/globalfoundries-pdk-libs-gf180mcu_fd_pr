@@ -92,6 +92,15 @@ metals_ignore_active = {
   "Metal5" => $Metal5_ignore_active
 }
 
+# Additional blockages according to magic's tech file
+blockage_layers = {
+  "Metal1" => Metal1_BLK,
+  "Metal2" => Metal2_BLK,
+  "Metal3" => Metal3_BLK,
+  "Metal4" => Metal4_BLK,
+  "Metal5" => Metal5_BLK
+}
+
 # DM.9
 fc_origins = {
   "Metal1" => RBA::DPoint::new(0.0, 0.0),
@@ -138,6 +147,7 @@ for metal in do_layers
   tp.input("POLYFUSE", $ly, $top_cell.cell_index, POLYFUSE)
   tp.input("FUSEWINDOW_D", $ly, $top_cell.cell_index, FUSEWINDOW_D)
   tp.input("PMNDMY", $ly, $top_cell.cell_index, PMNDMY)
+  tp.input("Metal_BLK", $ly, $top_cell.cell_index, blockage_layers[metal])
   tp.input("MTPMK", $ly, $top_cell.cell_index, MTPMK)
   tp.input("OTP_MK", $ly, $top_cell.cell_index, OTP_MK)
 
@@ -196,6 +206,7 @@ var fill_region = _tile & _frame
                   - POLYFUSE.sized(space_to_POLYFUSE)
                   - FUSEWINDOW_D.sized(space_to_FUSEWINDOW_D)
                   - PMNDMY.sized(space_to_PMNDMY)
+                  - Metal_BLK
                   - MTPMK.sized(space_to_MTPMK)
                   - OTP_MK.sized(space_to_OTP_MK)
                   - scribe_line_ring;
@@ -215,6 +226,7 @@ var fill_region = _tile & _frame
                   - POLYFUSE.sized(space_to_POLYFUSE)
                   - FUSEWINDOW_D.sized(space_to_FUSEWINDOW_D)
                   - PMNDMY.sized(space_to_PMNDMY)
+                  - Metal_BLK
                   - MTPMK.sized(space_to_MTPMK)
                   - OTP_MK.sized(space_to_OTP_MK)
                   - scribe_line_ring;
